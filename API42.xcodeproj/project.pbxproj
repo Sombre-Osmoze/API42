@@ -10,6 +10,9 @@
 		ED959BEE21DF845D00B61435 /* API42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED959BE421DF845D00B61435 /* API42.framework */; };
 		ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959BF221DF845D00B61435 /* API42Tests.swift */; };
 		ED959BF521DF845D00B61435 /* API42.h in Headers */ = {isa = PBXBuildFile; fileRef = ED959BE721DF845D00B61435 /* API42.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959BFE21DF8A9500B61435 /* EndpointURL.swift */; };
+		ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0621E0E01500B61435 /* ControllerAPI.swift */; };
+		ED959C0F21E1870F00B61435 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0E21E1870F00B61435 /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		ED959BED21DF845D00B61435 /* API42Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = API42Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED959BF221DF845D00B61435 /* API42Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API42Tests.swift; sourceTree = "<group>"; };
 		ED959BF421DF845D00B61435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED959BFE21DF8A9500B61435 /* EndpointURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointURL.swift; sourceTree = "<group>"; };
+		ED959C0621E0E01500B61435 /* ControllerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerAPI.swift; sourceTree = "<group>"; };
+		ED959C0E21E1870F00B61435 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				ED959BE721DF845D00B61435 /* API42.h */,
 				ED959BE821DF845D00B61435 /* Info.plist */,
+				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
+				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
+				ED959C0D21E186ED00B61435 /* Authentication */,
 			);
 			path = API42;
 			sourceTree = "<group>";
@@ -84,6 +93,14 @@
 				ED959BF421DF845D00B61435 /* Info.plist */,
 			);
 			path = API42Tests;
+			sourceTree = "<group>";
+		};
+		ED959C0D21E186ED00B61435 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				ED959C0E21E1870F00B61435 /* Token.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +165,7 @@
 				TargetAttributes = {
 					ED959BE321DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					ED959BEC21DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
@@ -194,6 +212,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
+				ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */,
+				ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +240,7 @@
 		ED959BF621DF845D00B61435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -272,9 +294,11 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "watchos macosx iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -283,6 +307,7 @@
 		ED959BF721DF845D00B61435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -329,9 +354,11 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "watchos macosx iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -340,6 +367,7 @@
 		ED959BF921DF845D00B61435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -351,6 +379,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = API42/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -359,13 +388,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s arm64_32 armv7k";
 			};
 			name = Debug;
 		};
 		ED959BFA21DF845D00B61435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -377,6 +409,7 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = API42/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -386,12 +419,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s arm64_32 armv7k";
 			};
 			name = Release;
 		};
 		ED959BFC21DF845D00B61435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z8Q82L44LS;
@@ -410,6 +445,7 @@
 		ED959BFD21DF845D00B61435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z8Q82L44LS;

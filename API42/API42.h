@@ -6,7 +6,7 @@
 //  Copyright © 2019 Marcus Florentin. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for API42.
 FOUNDATION_EXPORT double API42VersionNumber;
