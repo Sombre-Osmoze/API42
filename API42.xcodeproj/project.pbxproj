@@ -13,6 +13,8 @@
 		ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959BFE21DF8A9500B61435 /* EndpointURL.swift */; };
 		ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0621E0E01500B61435 /* ControllerAPI.swift */; };
 		ED959C0F21E1870F00B61435 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0E21E1870F00B61435 /* Token.swift */; };
+		ED959CBE21E449A900B61435 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959CBD21E449A900B61435 /* Me.swift */; };
+		EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD36B0E21EC04F000195C01 /* Authentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		ED959BFE21DF8A9500B61435 /* EndpointURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointURL.swift; sourceTree = "<group>"; };
 		ED959C0621E0E01500B61435 /* ControllerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerAPI.swift; sourceTree = "<group>"; };
 		ED959C0E21E1870F00B61435 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		ED959CBD21E449A900B61435 /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
+		EDD36B0E21EC04F000195C01 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				ED959BE821DF845D00B61435 /* Info.plist */,
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
+				ED959CBC21E4492700B61435 /* Users */,
 				ED959C0D21E186ED00B61435 /* Authentication */,
 			);
 			path = API42;
@@ -89,6 +94,7 @@
 		ED959BF121DF845D00B61435 /* API42Tests */ = {
 			isa = PBXGroup;
 			children = (
+				EDD36B0E21EC04F000195C01 /* Authentication.swift */,
 				ED959BF221DF845D00B61435 /* API42Tests.swift */,
 				ED959BF421DF845D00B61435 /* Info.plist */,
 			);
@@ -101,6 +107,14 @@
 				ED959C0E21E1870F00B61435 /* Token.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		ED959CBC21E4492700B61435 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				ED959CBD21E449A900B61435 /* Me.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
+				ED959CBE21E449A900B61435 /* Me.swift in Sources */,
 				ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */,
 				ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */,
 			);
@@ -223,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
+				EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@ public class Token: Codable {
 		case expiration = "expires_in"
 	}
 
-	init() throws {
+	public init() throws {
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecMatchLimit as String: kSecMatchLimitOne,
 									kSecReturnAttributes as String: true,
@@ -77,14 +77,18 @@ public class Token: Codable {
 	}
 
 	public func store() throws -> Void {
-
+		print(token)
 		try? delete()
-
+		let creationString = DateFormatter().string(from: creation)
 		let password = token.data(using: .utf8)!
 
-		let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
-									kSecAttrComment as String : expiration,
+		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecValueData as String: password,
+									kSecAttrServer as String: "api.intra.42.fr",
+									kSecAttrProtocol as String : kSecAttrProtocolHTTPS,
+									kSecAttrComment as String : expiration.description,
+									kSecAttrCreationDate as String : creationString,
+									kSecAttrType as String : type,
 									kSecAttrAccessible as String: kSecAttrAccessibleAlways,
 									kSecAttrLabel as String: "token"]
 
@@ -96,7 +100,8 @@ public class Token: Codable {
 
 	func delete() throws -> Void {
 
-		let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+									kSecAttrServer as String: "api.intra.42.fr",
 									kSecAttrAccessible as String: kSecAttrAccessibleAlways,
 									kSecAttrLabel as String: "token"]
 

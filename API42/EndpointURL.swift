@@ -19,15 +19,29 @@ enum ErrorURL: Int, Error {
 }
 
 
-public struct Enpoint {
+public struct Enpoint: Codable {
+
+
+	enum Endpoints {
+		enum Users {
+			case me
+		}
+	}
 
 	var scope : URLProtectionSpace {
 		return URLProtectionSpace(host: "api.intra.42.fr", port: 443, protocol: "https", realm: "42 API", authenticationMethod: NSURLAuthenticationMethodDefault)
 	}
 	var main: String {
-		return scope.protocol! + "://" + scope.host + "/" + version
+		return scope.protocol! + "://" + scope.host + "/" + version + "/"
 	}
 
 	let version = "v2"
+
+	func endpoint(url type: Endpoints.Users) -> URL {
+		switch type {
+		case .me:
+			return URL(string: main + "me")!
+		}
+	}
 
 }
