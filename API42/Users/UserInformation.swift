@@ -1,5 +1,5 @@
 //
-//  Me.swift
+//  UserInformation.swift
 //  API42
 //
 //  Created by Marcus Florentin on 08/01/2019.
@@ -8,10 +8,9 @@
 
 import Foundation
 
-public typealias Level = Float
 
 /// Show the current resource owner
-public struct Me: Codable {
+public struct UserInformation: Codable {
 
 	public let id : Int
 
@@ -31,6 +30,8 @@ public struct Me: Codable {
 
 	public let imageUrl : URL?
 
+	public var image : Data? = nil
+
 	public let isStaff : Bool
 
 	public let correctionPoint : Int
@@ -43,10 +44,9 @@ public struct Me: Codable {
 
 	public let wallet : Int
 
-	// TODO : Implement Group
-//	public let groups : [String]
+	public let groups : [Group]
 
-//	public let cursusUsers : [String]
+	public let cursusUsers : [CursusUsers]
 
 	private enum CodingKeys: String, CodingKey {
 		case displayName = "displayname"
@@ -64,5 +64,7 @@ public struct Me: Codable {
 		case poolYear
 		case location
 		case wallet
+		case groups
+		case cursusUsers
 	}
 }

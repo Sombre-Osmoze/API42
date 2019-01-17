@@ -17,7 +17,12 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 	private var decoder : JSONDecoder {
 		let dec = JSONDecoder()
 		dec.keyDecodingStrategy = .convertFromSnakeCase
-		dec.dateDecodingStrategy = .iso8601
+		let format = DateFormatter()
+		format.calendar = Calendar(identifier: .iso8601)
+		format.locale = Locale(identifier: "en_US_POSIX")
+		format.timeZone = TimeZone.autoupdatingCurrent
+		format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+		dec.dateDecodingStrategy = .formatted(format)
 		return dec
 	}
 
@@ -48,13 +53,13 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 		super.init()
 	}
 
-	public func ownerInformation(completion handler: @escaping(_ owner: Me?, _ error: Error?) -> Void) -> Void {
+	public func ownerInformation(completion handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
 		session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
 
 			if error == nil, let data = data {
 				do {
-					handler(try self.decoder.decode(Me.self, from: data), nil)
+					handler(try self.decoder.decode(UserInformation.self, from: data), nil)
 				} catch {
 					handler(nil, error)
 				}

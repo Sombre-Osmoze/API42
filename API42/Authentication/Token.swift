@@ -13,6 +13,7 @@ enum KeychainError: Error {
 	case noPassword
 	case unexpectedPasswordData
 	case unhandledError(status: OSStatus)
+	case expired
 }
 
 
@@ -51,18 +52,28 @@ public class Token: Codable {
 		guard status == errSecSuccess else {
 			throw KeychainError.unhandledError(status: status) }
 
+
 		guard let existingItem = item as? [String : Any],
 			let tokenData = existingItem[kSecValueData as String] as? Data,
-			let token = String(data: tokenData, encoding: String.Encoding.utf8),
-			let expiration = existingItem[kSecAttrComment as String] as? String
+			let token = String(data: tokenData, encoding: String.Encoding.utf8)
+//			let expiration = existingItem[kSecAttrComment as String] as? String
 
 			else {
 				throw KeychainError.unexpectedPasswordData
 		}
 
+
+
+//		print(existingItem[ as String])
+
+
 		self.token = token
-		self.expiration = TimeInterval(expiration)!
-		self.creation = Date()
+		self.expiration = TimeInterval(7200)
+		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
+		guard creation >= creation.addingTimeInterval(expiration) else {
+			try Token.delete()
+			throw KeychainError.expired
+		}
 		self.scope = TokenScope.standard
 		self.type = "bearer"
 	}
@@ -73,22 +84,22 @@ public class Token: Codable {
 		self.creation = creation
 		self.scope = scope
 		self.expiration = expiration
-
 	}
 
 	public func store() throws -> Void {
-		print(token)
-		try? delete()
+		try? Token.delete()
 		let creationString = DateFormatter().string(from: creation)
 		let password = token.data(using: .utf8)!
 
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecValueData as String: password,
+									kSecAttrAccount as String: "mflorent",
 									kSecAttrServer as String: "api.intra.42.fr",
+									kSecAttrDescription as String: scope.rawValue,
 									kSecAttrProtocol as String : kSecAttrProtocolHTTPS,
-									kSecAttrComment as String : expiration.description,
+//									kSecAttrComment as String : expiration.description,
 									kSecAttrCreationDate as String : creationString,
-									kSecAttrType as String : type,
+//									kSecAttrType as String : type,
 									kSecAttrAccessible as String: kSecAttrAccessibleAlways,
 									kSecAttrLabel as String: "token"]
 
@@ -98,7 +109,8 @@ public class Token: Codable {
 		}
 	}
 
-	func delete() throws -> Void {
+
+	class func delete() throws -> Void {
 
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecAttrServer as String: "api.intra.42.fr",

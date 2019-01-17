@@ -21,13 +21,20 @@ class Authentication: XCTestCase {
 
 	func testStoreCredential() {
 
-		let token = Token("1fed70378d48b4a31d7713d3ad2923fc466a7410ac5d9e11e0ee74f031422159",
+		let token = Token("a7ae973562d20f34f08eeaaec8a64e8b785819f2cc8cf560cc1b0495ff4daad2",
 						  type: "bearer", creation: Date(), scope: .standard, expiration: 7200)
 
 		do {
 			try token.store()
+			let check = try Token()
+			XCTAssertEqual(token.token, check.token)
+
 		} catch {
+			print(error)
 			XCTFail(error.localizedDescription)
 		}
+
+
+
 	}
 }
