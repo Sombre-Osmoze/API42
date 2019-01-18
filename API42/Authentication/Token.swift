@@ -70,10 +70,10 @@ public class Token: Codable {
 		self.token = token
 		self.expiration = TimeInterval(7200)
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
-		guard creation >= creation.addingTimeInterval(expiration) else {
-			try Token.delete()
-			throw KeychainError.expired
-		}
+//		guard creation >= creation.addingTimeInterval(expiration) else {
+//			try Token.delete()
+//			throw KeychainError.expired
+//		}
 		self.scope = TokenScope.standard
 		self.type = "bearer"
 	}
@@ -88,7 +88,6 @@ public class Token: Codable {
 
 	public func store() throws -> Void {
 		try? Token.delete()
-		let creationString = DateFormatter().string(from: creation)
 		let password = token.data(using: .utf8)!
 
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
@@ -98,7 +97,7 @@ public class Token: Codable {
 									kSecAttrDescription as String: scope.rawValue,
 									kSecAttrProtocol as String : kSecAttrProtocolHTTPS,
 //									kSecAttrComment as String : expiration.description,
-									kSecAttrCreationDate as String : creationString,
+//									kSecAttrCreationDate as String : DateFormatter().string(from: creation),
 //									kSecAttrType as String : type,
 									kSecAttrAccessible as String: kSecAttrAccessibleAlways,
 									kSecAttrLabel as String: "token"]

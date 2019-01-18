@@ -48,6 +48,14 @@ public struct UserInformation: Codable {
 
 	public let cursusUsers : [CursusUsers]
 
+	public let projectsUsers : [ProjectsUsers]
+
+	
+
+	public let achievements : [Achievements]
+
+	public let titles : [Titles]
+
 	private enum CodingKeys: String, CodingKey {
 		case displayName = "displayname"
 		case isStaff = "staff?"
@@ -66,5 +74,8 @@ public struct UserInformation: Codable {
 		case wallet
 		case groups
 		case cursusUsers
+		case projectsUsers
+		case achievements
+		case titles
 	}
 }

@@ -13,3 +13,6 @@ public typealias Level = Float
 
 /// A 42 user login
 public typealias Login = String
+
+/// API Slug
+public typealias Slug = String

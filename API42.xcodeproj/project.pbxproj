@@ -14,6 +14,12 @@
 		ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27B21F0E3ED002B9F4D /* Tools.swift */; };
 		ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27D21F0E4B7002B9F4D /* User.swift */; };
 		ED3EB28121F0E62F002B9F4D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB28021F0E62F002B9F4D /* Group.swift */; };
+		ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56354F21F15C9A009457AF /* ProjectsUsers.swift */; };
+		ED56355221F15E1A009457AF /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355121F15E1A009457AF /* Project.swift */; };
+		ED56355621F17456009457AF /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355521F17456009457AF /* Achievements.swift */; };
+		ED56355821F17524009457AF /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355721F17524009457AF /* Titles.swift */; };
+		ED56355A21F175C1009457AF /* TitlesUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355921F175C1009457AF /* TitlesUsers.swift */; };
+		ED56355D21F17664009457AF /* LanguagesUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355C21F17664009457AF /* LanguagesUsers.swift */; };
 		ED959BEE21DF845D00B61435 /* API42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED959BE421DF845D00B61435 /* API42.framework */; };
 		ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959BF221DF845D00B61435 /* API42Tests.swift */; };
 		ED959BF521DF845D00B61435 /* API42.h in Headers */ = {isa = PBXBuildFile; fileRef = ED959BE721DF845D00B61435 /* API42.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +49,12 @@
 		ED3EB27B21F0E3ED002B9F4D /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		ED3EB27D21F0E4B7002B9F4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED3EB28021F0E62F002B9F4D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		ED56354F21F15C9A009457AF /* ProjectsUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsUsers.swift; sourceTree = "<group>"; };
+		ED56355121F15E1A009457AF /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		ED56355521F17456009457AF /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
+		ED56355721F17524009457AF /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
+		ED56355921F175C1009457AF /* TitlesUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesUsers.swift; sourceTree = "<group>"; };
+		ED56355C21F17664009457AF /* LanguagesUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesUsers.swift; sourceTree = "<group>"; };
 		ED959BE421DF845D00B61435 /* API42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = API42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED959BE721DF845D00B61435 /* API42.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API42.h; sourceTree = "<group>"; };
 		ED959BE821DF845D00B61435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,7 +90,6 @@
 		ED3EB27321F0E0F0002B9F4D /* Cursus */ = {
 			isa = PBXGroup;
 			children = (
-				ED3EB27821F0E384002B9F4D /* Skills */,
 				ED3EB27421F0E125002B9F4D /* Cursus.swift */,
 				ED3EB27621F0E2BA002B9F4D /* CursusUsers.swift */,
 			);
@@ -99,6 +110,32 @@
 				ED3EB28021F0E62F002B9F4D /* Group.swift */,
 			);
 			path = Groups;
+			sourceTree = "<group>";
+		};
+		ED56354E21F15C5A009457AF /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				ED56354F21F15C9A009457AF /* ProjectsUsers.swift */,
+				ED56355121F15E1A009457AF /* Project.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		ED56355421F17434009457AF /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				ED56355521F17456009457AF /* Achievements.swift */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		ED56355B21F1763D009457AF /* Titles */ = {
+			isa = PBXGroup;
+			children = (
+				ED56355721F17524009457AF /* Titles.swift */,
+				ED56355921F175C1009457AF /* TitlesUsers.swift */,
+			);
+			path = Titles;
 			sourceTree = "<group>";
 		};
 		ED959BDA21DF845D00B61435 = {
@@ -127,8 +164,12 @@
 				ED959BE821DF845D00B61435 /* Info.plist */,
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
+				ED56355421F17434009457AF /* Achievements */,
 				ED3EB27F21F0E61F002B9F4D /* Groups */,
+				ED56354E21F15C5A009457AF /* Projects */,
+				ED3EB27821F0E384002B9F4D /* Skills */,
 				ED3EB27321F0E0F0002B9F4D /* Cursus */,
+				ED56355B21F1763D009457AF /* Titles */,
 				ED959CBC21E4492700B61435 /* Users */,
 				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED3EB27B21F0E3ED002B9F4D /* Tools.swift */,
@@ -160,6 +201,7 @@
 			children = (
 				ED959CBD21E449A900B61435 /* UserInformation.swift */,
 				ED3EB27D21F0E4B7002B9F4D /* User.swift */,
+				ED56355C21F17664009457AF /* LanguagesUsers.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -274,11 +316,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED3EB28121F0E62F002B9F4D /* Group.swift in Sources */,
+				ED56355621F17456009457AF /* Achievements.swift in Sources */,
+				ED56355D21F17664009457AF /* LanguagesUsers.swift in Sources */,
 				ED3EB27521F0E125002B9F4D /* Cursus.swift in Sources */,
+				ED56355A21F175C1009457AF /* TitlesUsers.swift in Sources */,
+				ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */,
 				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
 				ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */,
+				ED56355221F15E1A009457AF /* Project.swift in Sources */,
 				ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */,
 				ED3EB27721F0E2BA002B9F4D /* CursusUsers.swift in Sources */,
+				ED56355821F17524009457AF /* Titles.swift in Sources */,
 				ED3EB27A21F0E397002B9F4D /* Skill.swift in Sources */,
 				ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */,
 				ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */,

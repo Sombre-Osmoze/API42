@@ -23,6 +23,10 @@ open class AuthenticationHandler: NSObject {
 
 	public var logs = OSLog(subsystem: "com.osmoze.Manage42", category: .pointsOfInterest)
 
+//	public let uid = "5a9e4a1d069dd749fc0ae3b972c8b60474d070dd07f4d75b297912e1804f391f"
+//	private let secret = "771c64dbcbdef6e3c3b12df235a9663b5bc047d104b92e093cc315ac26994178"
+//	public let redirect = "https://profile.intra.42.fr"
+
 	public let uid = ProcessInfo.processInfo.environment["API_UID"]!
 	private let secret = ProcessInfo.processInfo.environment["API_SECRET"]!
 	public let redirect = ProcessInfo.processInfo.environment["API_REDIRECT"]!
@@ -90,9 +94,9 @@ open class AuthenticationHandler: NSObject {
 				switch status.statusCode {
 				case 200:
 					do {
-						self.step = .session
 						let token = try JSONDecoder().decode(Token.self, from: data!)
 						self.controller = ControllerAPI(token: token)
+						self.step = .session
 						self.controller?.ownerInformation(completion: { (owner, error) in
 							self.owner = owner
 							self.error = error

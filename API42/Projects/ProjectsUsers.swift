@@ -1,0 +1,34 @@
+//
+//  ProjectsUsers.swift
+//  API42
+//
+//  Created by Marcus Florentin on 18/01/2019.
+//  Copyright © 2019 Marcus Florentin. All rights reserved.
+//
+
+import Foundation
+
+public struct ProjectsUsers: Codable {
+
+	public let id : Int
+	public let occurence : Int?
+	public let finalMark : Int?
+	public let isValidated : Bool?
+	public let currentTeamId : Int?
+	public let project : Project
+	public let cursusIds : [Int]
+	public let markedAt : Date?
+	public let marked : Bool
+
+	private enum CodingKeys: String, CodingKey {
+		case id
+		case occurence
+		case finalMark
+		case isValidated = "validated?"
+		case currentTeamId
+		case project
+		case cursusIds
+		case markedAt
+		case marked
+	}
+}

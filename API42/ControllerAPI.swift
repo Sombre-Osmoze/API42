@@ -50,6 +50,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 
 	public init(token: Token) {
 		self.token = token
+		print(token.token)
 		super.init()
 	}
 
