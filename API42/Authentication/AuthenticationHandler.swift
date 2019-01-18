@@ -34,6 +34,7 @@ open class AuthenticationHandler: NSObject {
 	public var step : AuthStep = .none {
 
 		didSet {
+			logging()
 			handler(step, error)
 		}
 
@@ -42,7 +43,7 @@ open class AuthenticationHandler: NSObject {
 	func logging() -> Void {
 
 		if error == nil {
-			os_log(.default, log: logs, "Authentication handling step %s", step.rawValue)
+			os_log(.default, log: logs, "Authentication handling %s", step.rawValue)
 		} else {
 			os_log(.error, log: logs, "Error at step %s: %s", step.rawValue, error.debugDescription)
 		}
@@ -82,6 +83,8 @@ open class AuthenticationHandler: NSObject {
 		request.httpMethod = "POST"
 		request.httpBody = data
 
+		let log = OSLog(subsystem: "com.osmoze.API42", category: "Authentication")
+		os_signpost(.begin, log: log, name: "Token fetching")
 		URLSession.shared.dataTask(with: request) { (data, response, error) in
 			if error == nil, let status = response as? HTTPURLResponse {
 				switch status.statusCode {
@@ -103,9 +106,10 @@ open class AuthenticationHandler: NSObject {
 						self.error = nil
 					}
 				default:
-					print(status.statusCode)
+					os_signpost(.event, log: log, name: "Token fetching", "The server send status code: %d", status.statusCode)
 				}
 			}
+			os_signpost(.end, log: log, name: "Token fetching")
 		}.resume()
 
 	}
