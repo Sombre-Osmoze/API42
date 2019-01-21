@@ -30,9 +30,9 @@ public struct UserInformation: Codable {
 
 	public let imageUrl : URL?
 
-	public var image : Data? = nil
+	public var image : Data?
 
-	public let isStaff : Bool
+	public let isStaff : Bool?
 
 	public let correctionPoint : Int
 
@@ -49,8 +49,6 @@ public struct UserInformation: Codable {
 	public let cursusUsers : [CursusUsers]
 
 	public let projectsUsers : [ProjectsUsers]
-
-	
 
 	public let achievements : [Achievements]
 

@@ -56,26 +56,19 @@ public class Token: Codable {
 		guard let existingItem = item as? [String : Any],
 			let tokenData = existingItem[kSecValueData as String] as? Data,
 			let token = String(data: tokenData, encoding: String.Encoding.utf8)
-//			let expiration = existingItem[kSecAttrComment as String] as? String
-
 			else {
 				throw KeychainError.unexpectedPasswordData
 		}
-
-
-
-//		print(existingItem[ as String])
-
-
+		
 		self.token = token
-		self.expiration = TimeInterval(7200)
+		self.expiration = TimeInterval(existingItem[kSecAttrComment as String] as! String)!
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
-//		guard creation >= creation.addingTimeInterval(expiration) else {
-//			try Token.delete()
-//			throw KeychainError.expired
-//		}
+		guard creation.timeIntervalSinceNow < expiration else {
+			try Token.delete()
+			throw KeychainError.expired
+		}
 		self.scope = TokenScope.standard
-		self.type = "bearer"
+		self.type = existingItem[kSecAttrType as String]  as! String
 	}
 
 	init(_ token: String, type: String, creation: Date, scope: TokenScope, expiration: TimeInterval) {
@@ -89,16 +82,15 @@ public class Token: Codable {
 	public func store() throws -> Void {
 		try? Token.delete()
 		let password = token.data(using: .utf8)!
-
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecValueData as String: password,
-									kSecAttrAccount as String: "mflorent",
+									kSecAttrAccount as String: "42 manage",
 									kSecAttrServer as String: "api.intra.42.fr",
 									kSecAttrDescription as String: scope.rawValue,
 									kSecAttrProtocol as String : kSecAttrProtocolHTTPS,
-//									kSecAttrComment as String : expiration.description,
-//									kSecAttrCreationDate as String : DateFormatter().string(from: creation),
-//									kSecAttrType as String : type,
+									kSecAttrComment as String : expiration.description,
+									kSecAttrCreationDate as String : creation,
+									kSecAttrType as String : type,
 									kSecAttrAccessible as String: kSecAttrAccessibleAlways,
 									kSecAttrLabel as String: "token"]
 
