@@ -40,6 +40,11 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 //		super.init()
 //	}
 
+	public func logout() {
+		session.finishTasksAndInvalidate()
+		try? Token.delete()
+	}
+
 	private func prepare(request url: URL) -> URLRequest {
 		var request = URLRequest(url: url)
 
