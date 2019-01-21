@@ -63,7 +63,7 @@ public class Token: Codable {
 		self.token = token
 		self.expiration = TimeInterval(existingItem[kSecAttrComment as String] as! String)!
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
-		guard creation.timeIntervalSinceNow < expiration else {
+		guard creation.timeIntervalSinceNow.magnitude < expiration else {
 			try Token.delete()
 			throw KeychainError.expired
 		}

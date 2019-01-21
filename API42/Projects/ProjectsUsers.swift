@@ -13,6 +13,7 @@ public struct ProjectsUsers: Codable {
 	public let id : Int
 	public let occurence : Int?
 	public let finalMark : Int?
+	public let status : String?
 	public let isValidated : Bool?
 	public let currentTeamId : Int?
 	public let project : Project
@@ -24,6 +25,7 @@ public struct ProjectsUsers: Codable {
 		case id
 		case occurence
 		case finalMark
+		case status
 		case isValidated = "validated?"
 		case currentTeamId
 		case project
