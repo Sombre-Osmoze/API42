@@ -83,4 +83,29 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 		}.resume()
 	}
 
+
+	// MARK: Search API
+
+	public func search(user login: Login, page: Int,  completion handler: @escaping(_ users: [User]?, _ error: Error? ) -> Void) -> Void {
+
+//		var url = endpoints.endpoint(url: .users)
+
+		let url = URL(string: "https://api.intra.42.fr/v2/users/?page=\(page)&sort=login&range[login]=\(login),z)")!
+
+		session.dataTask(with: prepare(request: url)) { (data, resp, error) in
+
+			if error == nil, let data = data, let response = resp as? HTTPURLResponse {
+				if response.statusCode == 200 {
+					do {
+						handler(try self.decoder.decode([User].self, from: data), nil)
+					} catch {
+						handler(nil, error)
+					}
+				}
+			} else {
+				handler(nil, error)
+			}
+		}.resume()
+	}
+
 }

@@ -23,8 +23,9 @@ public struct Enpoint: Codable {
 
 
 	enum Endpoints {
+		case me
 		enum Users {
-			case me
+			case users
 		}
 	}
 
@@ -37,10 +38,17 @@ public struct Enpoint: Codable {
 
 	let version = "v2"
 
-	func endpoint(url type: Endpoints.Users) -> URL {
+	func endpoint(url type: Endpoints) -> URL {
 		switch type {
 		case .me:
 			return URL(string: main + "me")!
+		}
+	}
+
+	func endpoint(url type: Endpoints.Users) -> URL {
+		switch type {
+		case .users:
+			return URL(string: main + "users")!
 		}
 	}
 

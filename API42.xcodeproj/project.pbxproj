@@ -28,6 +28,7 @@
 		ED959C0F21E1870F00B61435 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0E21E1870F00B61435 /* Token.swift */; };
 		ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959CBD21E449A900B61435 /* UserInformation.swift */; };
 		EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD36B0E21EC04F000195C01 /* Authentication.swift */; };
+		EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE0D59C21F62EB000B9170B /* SearchAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		ED959C0E21E1870F00B61435 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ED959CBD21E449A900B61435 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		EDD36B0E21EC04F000195C01 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		EDE0D59C21F62EB000B9170B /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				ED959BE821DF845D00B61435 /* Info.plist */,
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
+				EDE0D59B21F62E9500B9170B /* Searches */,
 				ED56355421F17434009457AF /* Achievements */,
 				ED3EB27F21F0E61F002B9F4D /* Groups */,
 				ED56354E21F15C5A009457AF /* Projects */,
@@ -204,6 +207,14 @@
 				ED56355C21F17664009457AF /* LanguagesUsers.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		EDE0D59B21F62E9500B9170B /* Searches */ = {
+			isa = PBXGroup;
+			children = (
+				EDE0D59C21F62EB000B9170B /* SearchAPI.swift */,
+			);
+			path = Searches;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 				ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */,
 				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
 				ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */,
+				EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */,
 				ED56355221F15E1A009457AF /* Project.swift in Sources */,
 				ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */,
 				ED3EB27721F0E2BA002B9F4D /* CursusUsers.swift in Sources */,
