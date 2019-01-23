@@ -10,13 +10,13 @@ import Foundation
 
 public struct CursusUsers: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let beginAt : Date
 	public let endAt : Date?
 	public let grade : String?
 	public let level : Level
 	public let skills : [Skill]
-	public let cursusId : Int
+	public let cursusid : ID
 	public let hasCoalition : Bool
 	public let user : User
 	public let cursus : Cursus

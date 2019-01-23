@@ -10,7 +10,7 @@ import Foundation
 
 public struct User: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let login : Login
 	public let url : URL
 }

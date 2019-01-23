@@ -10,7 +10,7 @@ import Foundation
 
 public struct Skill: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let name : String
 	public let level : Level
 }

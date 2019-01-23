@@ -40,6 +40,12 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 //		super.init()
 //	}
 
+	public init(token: Token) {
+		self.token = token
+		print(token.token)
+		super.init()
+	}
+
 	public func logout() {
 		session.finishTasksAndInvalidate()
 		try? Token.delete()
@@ -53,23 +59,29 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 		return request
 	}
 
-	public init(token: Token) {
-		self.token = token
-		print(token.token)
-		super.init()
+	private func verify(response request: URLResponse?, error: Error?) throws -> Void {
+
+		guard error == nil else {
+			throw error!
+		}
+
+		guard let reponse = request as? HTTPURLResponse else { return }
+
+		if reponse.statusCode != 200, let error = RequestError(rawValue: reponse.statusCode) {
+			throw error
+		}
 	}
 
 	public func ownerInformation(completion handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
 		session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
-
-			if error == nil, let data = data {
-				do {
-					handler(try self.decoder.decode(UserInformation.self, from: data), nil)
-				} catch {
-					handler(nil, error)
-				}
-			} else {
+			do {
+				try self.verify(response: response, error: error)
+				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
+			} catch  is RequestError  {
+				print("Request : \(error!)")
+			}
+			catch  {
 				handler(nil, error)
 			}
 		}.resume()
@@ -81,6 +93,18 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 		session.dataTask(with: url) { (data, response, error) in
 			handler(data, error)
 		}.resume()
+	}
+
+	func userInformation(id: ID, completion handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
+		var url = endpoints.endpoint(url: .users)
+		url.appendPathComponent(id.description)
+
+		session.dataTask(with: prepare(request: url)) { (data, response, error) in
+			
+		}
+
+
+
 	}
 
 

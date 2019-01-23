@@ -10,14 +10,14 @@ import Foundation
 
 public struct ProjectsUsers: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let occurence : Int?
 	public let finalMark : Int?
 	public let status : String?
 	public let isValidated : Bool?
-	public let currentTeamId : Int?
+	public let currentTeamId : ID?
 	public let project : Project
-	public let cursusIds : [Int]
+	public let cursusIds : [ID]
 	public let markedAt : Date?
 	public let marked : Bool
 

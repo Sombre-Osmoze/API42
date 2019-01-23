@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// A ID
+public typealias ID = Int
+
 /// A 42 level
 public typealias Level = Float
 

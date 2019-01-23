@@ -10,7 +10,7 @@ import Foundation
 
 public struct Cursus: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let name : String
 	public let createdAt : Date
 	public let slug : Slug

@@ -10,6 +10,6 @@ import Foundation
 
 public struct Titles: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let name : String
 }

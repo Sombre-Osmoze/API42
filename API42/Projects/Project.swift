@@ -10,8 +10,8 @@ import Foundation
 
 public struct Project: Codable {
 
-	public let id : Int
+	public let id : ID
 	public let name : String
 	public let slug : Slug
-	public let parentID : Int?
+	public let parentid : ID?
 }

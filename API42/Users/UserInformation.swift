@@ -12,7 +12,7 @@ import Foundation
 /// Show the current resource owner
 public struct UserInformation: Codable {
 
-	public let id : Int
+	public let id : ID
 
 	public let email : String
 
