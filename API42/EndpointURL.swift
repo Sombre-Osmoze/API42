@@ -29,34 +29,30 @@ enum RequestError: Int, Error {
 public struct Enpoint: Codable {
 
 
-	enum Endpoints {
-		case me
-		enum Users {
-			case users
+	enum Endpoints: String {
+		case me = "me"
+
+		enum Users: String {
+			case users = "users"
 		}
 	}
 
 	var scope : URLProtectionSpace {
 		return URLProtectionSpace(host: "api.intra.42.fr", port: 443, protocol: "https", realm: "42 API", authenticationMethod: NSURLAuthenticationMethodDefault)
 	}
-	var main: String {
-		return scope.protocol! + "://" + scope.host + "/" + version + "/"
+
+	var main: URL {
+		return URL(string: "\(scope.protocol ?? "http")://\(scope.host)/\(version)/")!
 	}
 
 	let version = "v2"
 
 	func endpoint(url type: Endpoints) -> URL {
-		switch type {
-		case .me:
-			return URL(string: main + "me")!
-		}
+		return main.appendingPathComponent(type.rawValue)
 	}
 
 	func endpoint(url type: Endpoints.Users) -> URL {
-		switch type {
-		case .users:
-			return URL(string: main + "users")!
-		}
+		return main.appendingPathComponent(type.rawValue)
 	}
 
 }

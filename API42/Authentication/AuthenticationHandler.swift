@@ -21,7 +21,7 @@ open class AuthenticationHandler: NSObject {
 		case terminated = "Terminated"
 	}
 
-	public var logs = OSLog(subsystem: "com.osmoze.Manage42", category: .pointsOfInterest)
+	public var logs = OSLog(subsystem: "com.osmoze.API42", category: "Authentication")
 
 	public let uid = "5a9e4a1d069dd749fc0ae3b972c8b60474d070dd07f4d75b297912e1804f391f"
 	private let secret = "771c64dbcbdef6e3c3b12df235a9663b5bc047d104b92e093cc315ac26994178"
@@ -49,34 +49,17 @@ open class AuthenticationHandler: NSObject {
 		if error == nil {
 			os_log(.default, log: logs, "Authentication handling %s", step.rawValue)
 		} else {
-			os_log(.error, log: logs, "Error at step %s: %s", step.rawValue, error.debugDescription)
+			os_log(.error, log: logs, "Error at step [%s]: %s", step.rawValue, error.debugDescription)
 		}
 	}
 
 	private var handler : (_ step: AuthStep, _ error: Error?) -> Void = { _,_  in }
 
 	public init(completion handler: @escaping(_ step: AuthStep, _ error: Error?) -> Void) {
-
 		self.handler = handler
-
 		super.init()
 	}
 
-	private func retreiveAuthCode() {
-
-		if let cred = URLCredentialStorage.shared.defaultCredential(for: URLProtectionSpace(host: "api.intra.42.fr", port: 443, protocol: "https",
-																							realm: "42 API", authenticationMethod: nil)), cred.hasPassword {
-			step = .code
-			obtainToken(auth: cred.password!)
-		}
-	}
-
-	public func store(auth code: String) {
-
-		step = .code
-		let cred = URLCredential(user: "Manage42", password: code, persistence: .permanent)
-		URLCredentialStorage.shared.setDefaultCredential(cred, for: URLProtectionSpace(host: "api.intra.42.fr", port: 443, protocol: "https", realm: "42 API", authenticationMethod: nil))
-	}
 
 	public func obtainToken(auth code: String) -> Void {
 		let url = URL(string: "https://api.intra.42.fr/oauth/token")!
@@ -99,14 +82,13 @@ open class AuthenticationHandler: NSObject {
 						self.step = .session
 						self.controller?.ownerInformation(completion: { (owner, error) in
 							self.owner = owner
-							self.error = error
 							self.step = .owner
-							self.error = nil
 						})
 						try token.store()
 					} catch {
 						self.error = error
-						self.step = AuthStep(rawValue: self.step.rawValue)!
+						self.logging()
+						self.handler(self.step, error)
 						self.error = nil
 					}
 				default:

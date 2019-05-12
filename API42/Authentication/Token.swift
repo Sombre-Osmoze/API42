@@ -9,18 +9,6 @@
 import Foundation
 import Security
 
-enum KeychainError: Error {
-	case noPassword
-	case unexpectedPasswordData
-	case unhandledError(status: OSStatus)
-	case expired
-}
-
-
-enum TokenScope: String, Codable {
-	case standard = "public"
-}
-
 public class Token: Codable {
 
 	let token : String
@@ -28,13 +16,26 @@ public class Token: Codable {
 	let creation : Date
 	let scope : TokenScope
 	let expiration : TimeInterval
+	let refresh : String
 
-	enum CodingKeys: String, CodingKey {
+	enum KeychainError: Error {
+		case noPassword
+		case unexpectedPasswordData
+		case unhandledError(status: OSStatus)
+		case expired
+	}
+
+	enum TokenScope: String, Codable {
+		case standard = "public"
+	}
+
+	private enum CodingKeys: String, CodingKey {
 		case token = "access_token"
 		case type = "token_type"
 		case creation = "created_at"
 		case scope
 		case expiration = "expires_in"
+		case refresh = "refresh_token"
 	}
 
 	public init() throws {
@@ -55,12 +56,18 @@ public class Token: Codable {
 
 		guard let existingItem = item as? [String : Any],
 			let tokenData = existingItem[kSecValueData as String] as? Data,
-			let token = String(data: tokenData, encoding: String.Encoding.utf8)
+			let data = String(data: tokenData, encoding: .ascii)
 			else {
 				throw KeychainError.unexpectedPasswordData
 		}
-		
-		self.token = token
+
+		let tokens = data.split(separator: ":")
+		guard tokens.count == 2 else {
+			throw KeychainError.unexpectedPasswordData
+		}
+
+		self.token = String(tokens[0])
+		self.refresh = String(tokens[1])
 		self.expiration = TimeInterval(existingItem[kSecAttrComment as String] as! String)!
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
 		guard creation.timeIntervalSinceNow.magnitude < expiration else {
@@ -71,17 +78,9 @@ public class Token: Codable {
 		self.type = existingItem[kSecAttrType as String]  as! String
 	}
 
-	init(_ token: String, type: String, creation: Date, scope: TokenScope, expiration: TimeInterval) {
-		self.token = token
-		self.type = type
-		self.creation = creation
-		self.scope = scope
-		self.expiration = expiration
-	}
-
 	public func store() throws -> Void {
 		try? Token.delete()
-		let password = token.data(using: .utf8)!
+		let password = "\(token):\(refresh)".data(using: .ascii)!
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecValueData as String: password,
 									kSecAttrAccount as String: "42 manage",

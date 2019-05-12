@@ -21,8 +21,8 @@ class Authentication: XCTestCase {
 
 	func testStoreCredential() {
 
-		let token = Token("a7ae973562d20f34f08eeaaec8a64e8b785819f2cc8cf560cc1b0495ff4daad2",
-						  type: "bearer", creation: Date(), scope: .standard, expiration: 7200)
+//		let token = Token("a7ae973562d20f34f08eeaaec8a64e8b785819f2cc8cf560cc1b0495ff4daad2",
+//						  type: "bearer", creation: Date(), scope: .standard, expiration: 7200)
 
 		do {
 			try token.store()

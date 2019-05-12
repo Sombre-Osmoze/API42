@@ -8,12 +8,24 @@
 
 import Foundation
 
+// Logging
+import os.log
+import os.signpost
 
+public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTaskDelegate {
 
-public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
+	/// The controller 42's API token
+	private var token : Token!
 
-	let token : Token
+	/// Structure to get enpoints urls
 	private let endpoints = Enpoint()
+
+	/// Default event logger
+	private var logger : OSLog! { return .init(subsystem: "com.osmoze.API42", category: .pointsOfInterest) }
+
+	/// Logger for sign post logs
+	private var logging : OSLog! { return .init(subsystem: "com.osmoze.API42", category: "ControllerAPI") }
+
 	private var decoder : JSONDecoder {
 		let dec = JSONDecoder()
 		dec.keyDecodingStrategy = .convertFromSnakeCase
@@ -26,23 +38,18 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 		return dec
 	}
 
-	private var session : URLSession {
-		return URLSession(configuration: .default, delegate: self, delegateQueue: .init())
-	}
+	public override init() {
 
-//	public override init?() {
-//
-//		do {
-//			token = try Token()
-//		} catch {
-//			return nil
-//		}
-//		super.init()
-//	}
+		do {
+			token = try Token()
+		} catch {
+			token = nil
+		}
+		super.init()
+	}
 
 	public init(token: Token) {
 		self.token = token
-		print(token.token)
 		super.init()
 	}
 
@@ -53,10 +60,28 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 
 	private func prepare(request url: URL) -> URLRequest {
 		var request = URLRequest(url: url)
-
 		request.setValue("\(token.type.capitalized) \(token.token)", forHTTPHeaderField: "Authorization")
-
 		return request
+	}
+
+	private func validate(task: URLSessionTask) -> Void {
+
+		/// The token expiration date
+		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
+
+		// Check token validity
+		guard tokenLimit.timeIntervalSinceNow.sign == .plus else {
+			os_log(.debug, log: logger, "Token has expired")
+
+			// TODO: Refresh token
+
+
+			return
+		}
+
+
+		// Execute the task
+		task.resume()
 	}
 
 	private func verify(response request: URLResponse?, error: Error?) throws -> Void {
@@ -74,38 +99,61 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 
 	public func ownerInformation(completion handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
-		session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
+		os_signpost(.begin, log: logging, name: "Owner information fetching")
+		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
 			do {
 				try self.verify(response: response, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
-			} catch  is RequestError  {
-				print("Request : \(error!)")
-			}
-			catch  {
+			} catch (let error) {
 				handler(nil, error)
+				os_signpost(.event, log: self.logging, name: "Owner Information Fetching", "A decoding error occur: %s", error.localizedDescription)
 			}
-		}.resume()
+			os_signpost(.end, log: self.logging, name: "Owner Information Fetching")
+		}
 
+		validate(task: task)
 	}
 
 	public func user(image url: URL, completion handler: @escaping(_ image: Data?, _ error: Error?) -> Void) -> Void {
 		// TODO: Change code
-		session.dataTask(with: url) { (data, response, error) in
+
+		os_signpost(.begin, log: logging, name:  "User image fetching")
+		let task = session.dataTask(with: url) { (data, response, error) in
 			handler(data, error)
-		}.resume()
+			os_signpost(.end, log: self.logging, name:  "User image fetching")
+		}
+
+		validate(task: task)
 	}
 
 	func userInformation(id: ID, completion handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
 		var url = endpoints.endpoint(url: .users)
 		url.appendPathComponent(id.description)
 
-		session.dataTask(with: prepare(request: url)) { (data, response, error) in
-			
+		os_signpost(.begin, log: logging, name: "User information fetching", "User: %d", id)
+		let task = session.dataTask(with: prepare(request: url)) { (data, response, error) in
+
+			do {
+				try self.verify(response: response, error: error)
+				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
+			} catch (let error) {
+				handler(nil, error)
+				os_signpost(.event, log: self.logging, name: "User information fetching", "Decoding error: %s", error.localizedDescription)
+			}
+			os_signpost(.begin, log: self.logging, name: "User information fetching")
 		}
 
-
-
+		validate(task: task)
 	}
+
+	// MARK: - URL Session Delegate
+
+	private var session : URLSession {
+		let queue = OperationQueue()
+		queue.qualityOfService = .userInitiated
+		return URLSession(configuration: .default, delegate: self, delegateQueue: queue)
+	}
+
 
 
 	// MARK: Search API
@@ -116,7 +164,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 
 		let url = URL(string: "https://api.intra.42.fr/v2/users/?page=\(page)&sort=login&range[login]=\(login),z)")!
 
-		session.dataTask(with: prepare(request: url)) { (data, resp, error) in
+		let task = session.dataTask(with: prepare(request: url)) { (data, resp, error) in
 
 			if error == nil, let data = data, let response = resp as? HTTPURLResponse {
 				if response.statusCode == 200 {
@@ -129,7 +177,9 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate {
 			} else {
 				handler(nil, error)
 			}
-		}.resume()
+		}
+
+		validate(task: task)
 	}
 
 }
