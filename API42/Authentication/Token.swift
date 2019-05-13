@@ -16,7 +16,7 @@ public class Token: Codable {
 	let creation : Date
 	let scope : TokenScope
 	let expiration : TimeInterval
-	let refresh : String
+	let refresh : String?
 
 	enum KeychainError: Error {
 		case noPassword
@@ -56,18 +56,16 @@ public class Token: Codable {
 
 		guard let existingItem = item as? [String : Any],
 			let tokenData = existingItem[kSecValueData as String] as? Data,
-			let data = String(data: tokenData, encoding: .ascii)
+			let data = String(data: tokenData, encoding: .utf8)
 			else {
 				throw KeychainError.unexpectedPasswordData
 		}
 
 		let tokens = data.split(separator: ":")
-		guard tokens.count == 2 else {
-			throw KeychainError.unexpectedPasswordData
-		}
-
 		self.token = String(tokens[0])
-		self.refresh = String(tokens[1])
+		self.refresh = tokens.count == 2 ? String(tokens[1]) : nil
+
+
 		self.expiration = TimeInterval(existingItem[kSecAttrComment as String] as! String)!
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
 		guard creation.timeIntervalSinceNow.magnitude < expiration else {
@@ -80,7 +78,7 @@ public class Token: Codable {
 
 	public func store() throws -> Void {
 		try? Token.delete()
-		let password = "\(token):\(refresh)".data(using: .ascii)!
+		let password = "\(token):\(refresh ?? "")".data(using: .utf8)!
 		let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
 									kSecValueData as String: password,
 									kSecAttrAccount as String: "42 manage",

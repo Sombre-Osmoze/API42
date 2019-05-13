@@ -16,7 +16,8 @@ public struct CursusUsers: Codable {
 	public let grade : String?
 	public let level : Level
 	public let skills : [Skill]
-	public let cursusid : ID
+	// TODO: Verify below value
+	public let cursusid : ID?
 	public let hasCoalition : Bool
 	public let user : User
 	public let cursus : Cursus

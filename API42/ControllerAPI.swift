@@ -105,8 +105,8 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 				try self.verify(response: response, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
 			} catch (let error) {
-				handler(nil, error)
 				os_signpost(.event, log: self.logging, name: "Owner Information Fetching", "A decoding error occur: %s", error.localizedDescription)
+				handler(nil, error)
 			}
 			os_signpost(.end, log: self.logging, name: "Owner Information Fetching")
 		}

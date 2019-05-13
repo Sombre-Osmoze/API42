@@ -279,7 +279,7 @@
 				TargetAttributes = {
 					ED959BE321DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					ED959BEC21DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
@@ -292,6 +292,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = ED959BDA21DF845D00B61435;
 			productRefGroup = ED959BE521DF845D00B61435 /* Products */;
@@ -519,7 +520,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s arm64_32 armv7k";
 			};
 			name = Debug;
@@ -548,7 +549,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s arm64_32 armv7k";
 			};
 			name = Release;
