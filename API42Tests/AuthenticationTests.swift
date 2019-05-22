@@ -9,7 +9,7 @@
 import XCTest
 @testable import API42
 
-class Authentication: XCTestCase {
+class AuthenticationTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
