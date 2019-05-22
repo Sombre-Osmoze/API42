@@ -126,6 +126,22 @@
 			path = Slots;
 			sourceTree = "<group>";
 		};
+		ED5513FA22960B00005FC6D1 /* Resources Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				ED56355421F17434009457AF /* Achievements */,
+				ED3EB27321F0E0F0002B9F4D /* Cursus */,
+				ED3EB27F21F0E61F002B9F4D /* Groups */,
+				ED56354E21F15C5A009457AF /* Projects */,
+				EDE0D59B21F62E9500B9170B /* Searches */,
+				ED3EB27821F0E384002B9F4D /* Skills */,
+				ED5513F72295F972005FC6D1 /* Slots */,
+				ED56355B21F1763D009457AF /* Titles */,
+				ED959CBC21E4492700B61435 /* Users */,
+			);
+			path = "Resources Endpoints";
+			sourceTree = "<group>";
+		};
 		ED56354E21F15C5A009457AF /* Projects */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,15 +195,7 @@
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
 				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
-				ED56355421F17434009457AF /* Achievements */,
-				ED3EB27321F0E0F0002B9F4D /* Cursus */,
-				ED3EB27F21F0E61F002B9F4D /* Groups */,
-				ED56354E21F15C5A009457AF /* Projects */,
-				EDE0D59B21F62E9500B9170B /* Searches */,
-				ED3EB27821F0E384002B9F4D /* Skills */,
-				ED5513F72295F972005FC6D1 /* Slots */,
-				ED56355B21F1763D009457AF /* Titles */,
-				ED959CBC21E4492700B61435 /* Users */,
+				ED5513FA22960B00005FC6D1 /* Resources Endpoints */,
 				ED3EB27B21F0E3ED002B9F4D /* Tools.swift */,
 			);
 			path = API42;
