@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import API42
 
 class SlotsTests: XCTestCase {
 
@@ -53,7 +54,7 @@ class SlotsTests: XCTestCase {
 }
 """.data(using: .utf8)!
 
-		XCTAssertNoThrow(decoder.decode(Slot.self, from: slotData), "Does not conformome to decodable protocol")
+		XCTAssertNoThrow(try decoder.decode(Slot.self, from: slotData), "Does not conformome to decodable protocol")
 
 	}
 
