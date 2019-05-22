@@ -85,6 +85,11 @@ open class AuthenticationHandler: NSObject {
 							self.step = .owner
 						})
 						try token.store()
+						#if DEBUG
+						os_log(.info, log: log, "Token refreshed: %s", token.token)
+						#else
+						os_log(.info, log: log, "Token refreshed")
+						#endif
 					} catch {
 						self.error = error
 						self.logging()
