@@ -29,7 +29,7 @@
 		ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0621E0E01500B61435 /* ControllerAPI.swift */; };
 		ED959C0F21E1870F00B61435 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0E21E1870F00B61435 /* Token.swift */; };
 		ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959CBD21E449A900B61435 /* UserInformation.swift */; };
-		EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD36B0E21EC04F000195C01 /* Authentication.swift */; };
+		EDD36B0F21EC04F000195C01 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */; };
 		EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE0D59C21F62EB000B9170B /* SearchAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,7 @@
 		ED959C0621E0E01500B61435 /* ControllerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerAPI.swift; sourceTree = "<group>"; };
 		ED959C0E21E1870F00B61435 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ED959CBD21E449A900B61435 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
-		EDD36B0E21EC04F000195C01 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		EDE0D59C21F62EB000B9170B /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,7 +198,7 @@
 			children = (
 				ED959BF421DF845D00B61435 /* Info.plist */,
 				ED959BF221DF845D00B61435 /* API42Tests.swift */,
-				EDD36B0E21EC04F000195C01 /* Authentication.swift */,
+				EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */,
 				ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */,
 			);
 			path = API42Tests;
@@ -369,7 +369,7 @@
 			files = (
 				ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */,
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
-				EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */,
+				EDD36B0F21EC04F000195C01 /* AuthenticationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
