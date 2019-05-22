@@ -97,7 +97,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		}
 	}
 
-	public func ownerInformation(completion handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
+	public func ownerInformation( handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Owner information fetching")
 		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
@@ -114,7 +114,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		validate(task: task)
 	}
 
-	public func user(image url: URL, completion handler: @escaping(_ image: Data?, _ error: Error?) -> Void) -> Void {
+	public func user(image url: URL,  handler: @escaping(_ image: Data?, _ error: Error?) -> Void) -> Void {
 		// TODO: Change code
 
 		os_signpost(.begin, log: logging, name:  "User image fetching")
@@ -126,7 +126,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		validate(task: task)
 	}
 
-	func userInformation(id: ID, completion handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
+	func userInformation(id: ID,  handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
 		var url = endpoints.endpoint(url: .users)
 		url.appendPathComponent(id.description)
 
@@ -158,7 +158,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 	// MARK: Search API
 
-	public func search(user login: Login, page: Int,  completion handler: @escaping(_ users: [User]?, _ error: Error? ) -> Void) -> Void {
+	public func search(user login: Login, page: Int,   handler: @escaping(_ users: [User]?, _ error: Error? ) -> Void) -> Void {
 
 //		var url = endpoints.endpoint(url: .users)
 
@@ -181,6 +181,12 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 		validate(task: task)
 	}
+
+	// MARK: - Slots
+
+//	func ownerSlots(handler: @escaping()) -> <#return type#> {
+//		<#function body#>
+//	}
 
 
 	

@@ -80,10 +80,10 @@ open class AuthenticationHandler: NSObject {
 						let token = try JSONDecoder().decode(Token.self, from: data!)
 						self.controller = ControllerAPI(token: token)
 						self.step = .session
-						self.controller?.ownerInformation(completion: { (owner, error) in
+						self.controller?.ownerInformation { (owner, error) in
 							self.owner = owner
 							self.step = .owner
-						})
+						}
 						try token.store()
 						#if DEBUG
 						os_log(.info, log: log, "Token refreshed: %s", token.token)
