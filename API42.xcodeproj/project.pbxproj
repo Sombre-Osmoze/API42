@@ -14,7 +14,7 @@
 		ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27B21F0E3ED002B9F4D /* Tools.swift */; };
 		ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27D21F0E4B7002B9F4D /* User.swift */; };
 		ED3EB28121F0E62F002B9F4D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB28021F0E62F002B9F4D /* Group.swift */; };
-		ED5513F62295F8F9005FC6D1 /* Slots.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F52295F8F9005FC6D1 /* Slots.swift */; };
+		ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */; };
 		ED5513F92295F9F9005FC6D1 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F82295F9F9005FC6D1 /* Slot.swift */; };
 		ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56354F21F15C9A009457AF /* ProjectsUsers.swift */; };
 		ED56355221F15E1A009457AF /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355121F15E1A009457AF /* Project.swift */; };
@@ -52,7 +52,7 @@
 		ED3EB27B21F0E3ED002B9F4D /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		ED3EB27D21F0E4B7002B9F4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED3EB28021F0E62F002B9F4D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		ED5513F52295F8F9005FC6D1 /* Slots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slots.swift; sourceTree = "<group>"; };
+		ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsTests.swift; sourceTree = "<group>"; };
 		ED5513F82295F9F9005FC6D1 /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		ED56354F21F15C9A009457AF /* ProjectsUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsUsers.swift; sourceTree = "<group>"; };
 		ED56355121F15E1A009457AF /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 				ED959BF421DF845D00B61435 /* Info.plist */,
 				ED959BF221DF845D00B61435 /* API42Tests.swift */,
 				EDD36B0E21EC04F000195C01 /* Authentication.swift */,
-				ED5513F52295F8F9005FC6D1 /* Slots.swift */,
+				ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */,
 			);
 			path = API42Tests;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED5513F62295F8F9005FC6D1 /* Slots.swift in Sources */,
+				ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */,
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
 				EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */,
 			);
