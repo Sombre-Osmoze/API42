@@ -11,5 +11,7 @@ import Foundation
 public struct Titles: Codable {
 
 	public let id : ID
+	
 	public let name : String
+	
 }

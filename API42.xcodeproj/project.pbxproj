@@ -14,6 +14,8 @@
 		ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27B21F0E3ED002B9F4D /* Tools.swift */; };
 		ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27D21F0E4B7002B9F4D /* User.swift */; };
 		ED3EB28121F0E62F002B9F4D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB28021F0E62F002B9F4D /* Group.swift */; };
+		ED5513F62295F8F9005FC6D1 /* Slots.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F52295F8F9005FC6D1 /* Slots.swift */; };
+		ED5513F92295F9F9005FC6D1 /* Slots.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F82295F9F9005FC6D1 /* Slots.swift */; };
 		ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56354F21F15C9A009457AF /* ProjectsUsers.swift */; };
 		ED56355221F15E1A009457AF /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355121F15E1A009457AF /* Project.swift */; };
 		ED56355621F17456009457AF /* Achievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355521F17456009457AF /* Achievements.swift */; };
@@ -50,6 +52,8 @@
 		ED3EB27B21F0E3ED002B9F4D /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		ED3EB27D21F0E4B7002B9F4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED3EB28021F0E62F002B9F4D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		ED5513F52295F8F9005FC6D1 /* Slots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slots.swift; sourceTree = "<group>"; };
+		ED5513F82295F9F9005FC6D1 /* Slots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slots.swift; sourceTree = "<group>"; };
 		ED56354F21F15C9A009457AF /* ProjectsUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsUsers.swift; sourceTree = "<group>"; };
 		ED56355121F15E1A009457AF /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		ED56355521F17456009457AF /* Achievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievements.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
+		ED5513F72295F972005FC6D1 /* Slots */ = {
+			isa = PBXGroup;
+			children = (
+				ED5513F82295F9F9005FC6D1 /* Slots.swift */,
+			);
+			path = Slots;
+			sourceTree = "<group>";
+		};
 		ED56354E21F15C5A009457AF /* Projects */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,16 +177,17 @@
 				ED959BE721DF845D00B61435 /* API42.h */,
 				ED959BE821DF845D00B61435 /* Info.plist */,
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
+				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
-				EDE0D59B21F62E9500B9170B /* Searches */,
 				ED56355421F17434009457AF /* Achievements */,
+				ED3EB27321F0E0F0002B9F4D /* Cursus */,
 				ED3EB27F21F0E61F002B9F4D /* Groups */,
 				ED56354E21F15C5A009457AF /* Projects */,
+				EDE0D59B21F62E9500B9170B /* Searches */,
 				ED3EB27821F0E384002B9F4D /* Skills */,
-				ED3EB27321F0E0F0002B9F4D /* Cursus */,
+				ED5513F72295F972005FC6D1 /* Slots */,
 				ED56355B21F1763D009457AF /* Titles */,
 				ED959CBC21E4492700B61435 /* Users */,
-				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED3EB27B21F0E3ED002B9F4D /* Tools.swift */,
 			);
 			path = API42;
@@ -183,9 +196,10 @@
 		ED959BF121DF845D00B61435 /* API42Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EDD36B0E21EC04F000195C01 /* Authentication.swift */,
-				ED959BF221DF845D00B61435 /* API42Tests.swift */,
 				ED959BF421DF845D00B61435 /* Info.plist */,
+				ED959BF221DF845D00B61435 /* API42Tests.swift */,
+				EDD36B0E21EC04F000195C01 /* Authentication.swift */,
+				ED5513F52295F8F9005FC6D1 /* Slots.swift */,
 			);
 			path = API42Tests;
 			sourceTree = "<group>";
@@ -193,8 +207,8 @@
 		ED959C0D21E186ED00B61435 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				ED959C0E21E1870F00B61435 /* Token.swift */,
 				ED3EB26B21F02FC2002B9F4D /* AuthenticationHandler.swift */,
+				ED959C0E21E1870F00B61435 /* Token.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -334,6 +348,7 @@
 				ED56355A21F175C1009457AF /* TitlesUsers.swift in Sources */,
 				ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */,
 				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
+				ED5513F92295F9F9005FC6D1 /* Slots.swift in Sources */,
 				ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */,
 				EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */,
 				ED56355221F15E1A009457AF /* Project.swift in Sources */,
@@ -352,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED5513F62295F8F9005FC6D1 /* Slots.swift in Sources */,
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
 				EDD36B0F21EC04F000195C01 /* Authentication.swift in Sources */,
 			);

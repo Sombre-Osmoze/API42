@@ -9,9 +9,15 @@
 import Foundation
 
 public struct LanguagesUsers: Codable {
+
 	public let id : ID
+
 	public let languageid : ID
+
 	public let userid : ID
+
 	public let position : Int
+
 	public let createdAt : Date
+
 }

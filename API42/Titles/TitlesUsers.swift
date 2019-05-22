@@ -11,7 +11,11 @@ import Foundation
 public struct TitlesUsers: Codable {
 
 	public let id : ID
+	
 	public let userid : ID
+	
 	public let titleid : ID
+	
 	public let selected : Bool
+	
 }

@@ -11,7 +11,11 @@ import Foundation
 public struct Project: Codable {
 
 	public let id : ID
+	
 	public let name : String
+	
 	public let slug : Slug
+	
 	public let parentid : ID?
+	
 }
