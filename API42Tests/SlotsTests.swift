@@ -33,13 +33,29 @@ class SlotsTests: XCTestCase {
 		return dec
 	}()
 
+	/// Test if the slot structure is conforme to the Codable protocol.
 	func testCodable() {
 
-		//		/// A Slot structure
-		//		let slot =
+		/// A Slot structure
+		let slot = Slot(id: 1, beginAt: Date(timeIntervalSinceReferenceDate: 5),
+						endAt: Date(timeIntervalSinceReferenceDate: 125),
+						scaleTeam: nil,
+						user: "invisible")
+ 
+		var data : Data! = nil
+		var result : Slot! = nil
+
+		XCTAssertNoThrow(data = try JSONEncoder().encode(slot), "Not conforme to encodable protocol")
+
+		XCTAssertNoThrow(result = try JSONDecoder().decode(Slot.self, from: data), "Not conforme to encodable protocol")
+
+		guard result != nil else { return }
+
+		XCTAssertEqual(slot, result, "After encoding and decoding the data are not the same")
 
 	}
 
+	/// Test if the slot structure is conforme to Decodable proctocole with some API datas.
 	func testDecodable() {
 
 
