@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Group: Codable {
+public struct Group: CodingAPI {
 
 	public let id : ID
 

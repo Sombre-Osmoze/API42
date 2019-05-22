@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Show the current resource owner
-public struct UserInformation: Codable {
+public struct UserInformation: CodingAPI {
 
 	public let id : ID
 

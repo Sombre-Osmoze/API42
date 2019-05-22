@@ -26,7 +26,7 @@ enum RequestError: Int, Error {
 }
 
 
-public struct Enpoint: Codable {
+public struct Enpoint: CodingAPI {
 
 
 	enum Endpoints: String {

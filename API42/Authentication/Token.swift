@@ -9,7 +9,7 @@
 import Foundation
 import Security
 
-public class Token: Codable {
+public class Token: CodingAPI {
 
 	let token : String
 	let type : String
@@ -25,7 +25,7 @@ public class Token: Codable {
 		case expired
 	}
 
-	enum TokenScope: String, Codable {
+	enum TokenScope: String, CodingAPI {
 		case standard = "public"
 	}
 
@@ -111,4 +111,23 @@ public class Token: Codable {
 			throw KeychainError.unhandledError(status: status)
 		}
 	}
+
+	// MARK: - Equatable
+	public static func == (lhs: Token, rhs: Token) -> Bool {
+
+		guard lhs.expiration == rhs.expiration else { return false }
+
+		guard lhs.creation == rhs.creation else { return false }
+
+		guard lhs.type == rhs.type else { return false }
+
+		guard lhs.scope == rhs.scope else { return false }
+
+		guard lhs.token == rhs.token else { return false }
+
+		guard lhs.refresh == rhs.refresh else { return false }
+
+		return true
+	}
+
 }

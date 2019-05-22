@@ -19,3 +19,8 @@ public typealias Login = String
 
 /// API Slug
 public typealias Slug = String
+
+
+// MARK: Coding
+
+public typealias CodingAPI = Codable & Equatable
