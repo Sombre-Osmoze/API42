@@ -195,8 +195,8 @@
 				ED959BFE21DF8A9500B61435 /* EndpointURL.swift */,
 				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
-				ED5513FA22960B00005FC6D1 /* Resources Endpoints */,
 				ED3EB27B21F0E3ED002B9F4D /* Tools.swift */,
+				ED5513FA22960B00005FC6D1 /* Resources Endpoints */,
 			);
 			path = API42;
 			sourceTree = "<group>";
