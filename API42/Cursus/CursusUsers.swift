@@ -21,8 +21,10 @@ public struct CursusUsers: Codable {
 	public let level : Level
 
 	public let skills : [Skill]
-	// TODO: Verify below value
-	public let cursusid : ID?
+
+	// TODO: Trying 'cursusId' in replacement of 'cursusid'
+	public let cursusId : ID
+
 	public let hasCoalition : Bool
 
 	public let user : User
