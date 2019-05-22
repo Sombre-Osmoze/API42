@@ -19,4 +19,10 @@ public struct Slot {
 
 	public let endAt : Date
 
+	// TODO: Find wich type is it
+	public let scaleTeam : String?
+
+	// TODO: Find wich type is it
+	public let user : String
+
 }
