@@ -64,7 +64,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		return request
 	}
 
-	private func validate(task: URLSessionTask) -> Void {
+	private func validate(_ task: URLSessionTask) -> Void {
 
 		/// The token expiration date
 		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
@@ -84,25 +84,44 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		task.resume()
 	}
 
-	private func verify(response request: URLResponse?, error: Error?) throws -> Void {
+	// MARK: Request & Error handling
+
+	private func verify(request response: URLResponse?, error: Error?) throws -> Void {
 
 		guard error == nil else {
+			try handle(error!)
 			throw error!
 		}
 
-		guard let reponse = request as? HTTPURLResponse else { return }
+		guard let reponse = response as? HTTPURLResponse else { return }
 
 		if reponse.statusCode != 200, let error = RequestError(rawValue: reponse.statusCode) {
+			try handle(error)
 			throw error
 		}
+
+
 	}
+
+	private func handle(_ error: Error) throws -> Void {
+
+		switch error {
+		case (let request as RequestError): break
+
+
+		default:
+			os_log(.fault, log: logger, "Unhandled error: %s", error.localizedDescription)
+		}
+	}
+
+	// MARK: User
 
 	public func ownerInformation( handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Owner information fetching")
 		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
 			do {
-				try self.verify(response: response, error: error)
+				try self.verify(request: response, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
 			} catch (let error) {
 				os_signpost(.event, log: self.logging, name: "Owner Information Fetching", "A decoding error occur: %s", error.localizedDescription)
@@ -111,7 +130,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 			os_signpost(.end, log: self.logging, name: "Owner Information Fetching")
 		}
 
-		validate(task: task)
+		validate(task)
 	}
 
 	public func user(image url: URL,  handler: @escaping(_ image: Data?, _ error: Error?) -> Void) -> Void {
@@ -123,7 +142,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 			os_signpost(.end, log: self.logging, name:  "User image fetching")
 		}
 
-		validate(task: task)
+		validate(task)
 	}
 
 	func userInformation(id: ID,  handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
@@ -134,7 +153,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		let task = session.dataTask(with: prepare(request: url)) { (data, response, error) in
 
 			do {
-				try self.verify(response: response, error: error)
+				try self.verify(request: response, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
 			} catch (let error) {
 				handler(nil, error)
@@ -143,7 +162,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 			os_signpost(.begin, log: self.logging, name: "User information fetching")
 		}
 
-		validate(task: task)
+		validate(task)
 	}
 
 	// MARK: - URL Session Delegate
@@ -179,14 +198,27 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 			}
 		}
 
-		validate(task: task)
+		validate(task)
 	}
 
 	// MARK: - Slots
 
-//	func ownerSlots(handler: @escaping()) -> <#return type#> {
-//		<#function body#>
-//	}
+	func ownerSlots(handler: @escaping(_ result: Result<[Slot], Error>) -> Void) -> Void {
+
+		os_signpost(.begin, log: logging, name: "Owner slots fetching")
+		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me, component: .slots))) { (data, response, error) in
+
+			do {
+				try self.verify(request: response, error: error)
+			} catch {
+
+			}
+
+			os_signpost(.end, log: self.logging, name: "Owner slots fetching")
+		}
+
+		validate(task)
+	}
 
 
 	
