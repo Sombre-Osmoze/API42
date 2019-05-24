@@ -68,10 +68,6 @@ public class Token: CodingAPI {
 
 		self.expiration = TimeInterval(existingItem[kSecAttrComment as String] as! String)!
 		self.creation = existingItem[kSecAttrCreationDate as String]  as! Date
-		guard creation.timeIntervalSinceNow.magnitude < expiration else {
-			try Token.delete()
-			throw KeychainError.expired
-		}
 		self.scope = TokenScope.standard
 		self.type = existingItem[kSecAttrType as String]  as! String
 	}
