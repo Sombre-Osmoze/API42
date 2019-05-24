@@ -40,6 +40,10 @@ public struct Enpoint: CodingAPI {
 	enum Endpoints: String {
 		case me = "me"
 
+		enum Auth: String {
+			case token = "token"
+		}
+
 		enum Users: String {
 			case users = "users"
 		}
@@ -59,6 +63,12 @@ public struct Enpoint: CodingAPI {
 	
 	let version = "v2"
 
+	func endpoint(url type: Endpoints.Auth) -> URL {
+		var url = main.appendingPathComponent("auth")
+		url.appendPathComponent(type.rawValue)
+		return url
+	}
+
 	func endpoint(url type: Endpoints, component: Endpoints.Components? = nil) -> URL {
 
 		var url = main.appendingPathComponent(type.rawValue)
@@ -69,6 +79,12 @@ public struct Enpoint: CodingAPI {
 		return url
 	}
 
+
+
+	/// This function gives a url corresponding to the
+	///
+	/// - Parameter type: The requested endpoint
+	/// - Returns: The url for the requested 'Users' endpoint
 	func endpoint(url type: Endpoints.Users) -> URL {
 		return main.appendingPathComponent(type.rawValue)
 	}
