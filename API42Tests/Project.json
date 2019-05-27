@@ -1,0 +1,87 @@
+{
+	"id": 2,
+	"name": "Ordinary Wizarding Levels",
+	"slug": "ordinary-wizarding-levels",
+	"description": "Ordinary Wizarding Level (often abbreviated O.W.L.) is a subject-specific test taken during Hogwarts School of Witchcraft and Wizardry students' fifth year, administrated by the Wizarding Examinations Authority. The score made by a student on a particular O.W.L. determines whether or not he or she will be allowed to continue taking that subject in subsequent school years.",
+	"parent": null,
+	"children": [],
+	"objectives": [
+		"Wizarding"
+	],
+	"tier": 1,
+	"attachments": [],
+	"created_at": "2017-11-22T13:41:26.356Z",
+	"updated_at": "2017-11-22T13:41:26.441Z",
+	"exam": true,
+	"cursus": [
+		{
+			"id": 1,
+			"created_at": "2017-11-22T13:41:00.750Z",
+			"name": "Piscine C",
+			"slug": "piscine-c"
+		}
+	],
+	"campus": [
+		{
+			"id": 1,
+			"name": "Cluj",
+			"time_zone": "Europe/Bucharest",
+			"language": {
+				"id": 3,
+				"name": "Romanian",
+				"identifier": "ro",
+				"created_at": "2017-11-22T13:40:59.468Z",
+				"updated_at": "2017-11-22T13:41:26.139Z"
+			},
+			"users_count": 28,
+			"vogsphere_id": 1
+		}
+	],
+	"skills": [
+		{
+			"id": 6,
+			"name": "Basics",
+			"created_at": "2017-11-22T13:41:00.448Z"
+		},
+		{
+			"id": 1,
+			"name": "Parallel computing",
+			"created_at": "2017-11-22T13:41:00.257Z"
+		}
+	],
+	"videos": [],
+	"tags": [
+		{
+			"id": 13,
+			"name": "Ordinary Wizarding Levels",
+			"kind": "general"
+		}
+	],
+	"project_sessions": [
+		{
+			"id": 2,
+			"solo": true,
+			"begin_at": null,
+			"end_at": null,
+			"estimate_time": 2592000,
+			"duration_days": null,
+			"terminating_after": null,
+			"project_id": 2,
+			"campus_id": null,
+			"cursus_id": null,
+			"created_at": "2017-11-22T13:41:26.375Z",
+			"updated_at": "2017-11-22T13:41:28.347Z",
+			"max_people": null,
+			"is_subscriptable": true,
+			"scales": [
+				{
+					"id": 2,
+					"correction_number": 3,
+					"is_primary": true
+				}
+			],
+			"uploads": [],
+			"team_behaviour": "user"
+		}
+	]
+}
