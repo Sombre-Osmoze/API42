@@ -54,7 +54,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 	}
 
 	public func logout() {
-		session.finishTasksAndInvalidate()
+		session.invalidateAndCancel()
 		try? Token.delete()
 	}
 
@@ -69,12 +69,13 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		/// The token expiration date
 		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
 
-		// Check token validity
+		// Check token validity.
+		// Can use `creation.timeIntervalSinceNow.magnitude < expiration`
 		guard tokenLimit.timeIntervalSinceNow.sign == .plus else {
 			os_log(.debug, log: logger, "Token has expired")
 
 			// TODO: Refresh token
-
+//			session.dataTask(with: <#T##URLRequest#>)
 
 			return
 		}
@@ -86,7 +87,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 	// MARK: Request & Error handling
 
-	private func verify(request response: URLResponse?, error: Error?) throws -> Void {
+	private func verify(request response: URLResponse?, data: Data? = nil, error: Error?) throws -> Void {
 
 		guard error == nil else {
 			try handle(error!)
@@ -95,11 +96,15 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 		guard let reponse = response as? HTTPURLResponse else { return }
 
+
 		if reponse.statusCode != 200, let error = RequestError(rawValue: reponse.statusCode) {
 			try handle(error)
 			throw error
 		}
 
+		guard let data = data, data.count == Int(reponse.expectedContentLength) else {
+			throw RequestFault.corruptedData
+		}
 
 	}
 
@@ -107,7 +112,7 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 		switch error {
 		case (let request as RequestError): break
-
+			// TODO: Handle http classique error
 
 		default:
 			os_log(.fault, log: logger, "Unhandled error: %s", error.localizedDescription)
@@ -210,8 +215,8 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 			do {
 				try self.verify(request: response, error: error)
-			} catch {
-
+			} catch let err {
+				handler(.failure(err))
 			}
 
 			os_signpost(.end, log: self.logging, name: "Owner slots fetching")
