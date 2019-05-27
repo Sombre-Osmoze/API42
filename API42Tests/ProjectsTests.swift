@@ -38,7 +38,7 @@ class ProjectsTests: XCTestCase {
 		let project = Project(id: 1, name: "Test", slug: "Test", parentid: nil)
 
 		var data : Data! = nil
-		var result : Slot! = nil
+		var result : Project! = nil
 
 		XCTAssertNoThrow(data = try JSONEncoder().encode(project), "Not conforme to encodable protocol")
 
