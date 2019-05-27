@@ -29,6 +29,7 @@
 		ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0621E0E01500B61435 /* ControllerAPI.swift */; };
 		ED959C0F21E1870F00B61435 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959C0E21E1870F00B61435 /* Token.swift */; };
 		ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959CBD21E449A900B61435 /* UserInformation.swift */; };
+		EDC85FFE229BE14800A19DF7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC85FFD229BE14800A19DF7 /* Errors.swift */; };
 		EDD36B0F21EC04F000195C01 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */; };
 		EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE0D59C21F62EB000B9170B /* SearchAPI.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		ED959C0621E0E01500B61435 /* ControllerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerAPI.swift; sourceTree = "<group>"; };
 		ED959C0E21E1870F00B61435 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ED959CBD21E449A900B61435 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
+		EDC85FFD229BE14800A19DF7 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		EDE0D59C21F62EB000B9170B /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 				ED959C0D21E186ED00B61435 /* Authentication */,
 				ED959C0621E0E01500B61435 /* ControllerAPI.swift */,
 				ED3EB27B21F0E3ED002B9F4D /* Tools.swift */,
+				EDC85FFD229BE14800A19DF7 /* Errors.swift */,
 				ED5513FA22960B00005FC6D1 /* Resources Endpoints */,
 			);
 			path = API42;
@@ -365,6 +368,7 @@
 				ED56355821F17524009457AF /* Titles.swift in Sources */,
 				ED3EB27A21F0E397002B9F4D /* Skill.swift in Sources */,
 				ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */,
+				EDC85FFE229BE14800A19DF7 /* Errors.swift in Sources */,
 				ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */,
 				ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */,
 				ED3EB26C21F02FC2002B9F4D /* AuthenticationHandler.swift in Sources */,

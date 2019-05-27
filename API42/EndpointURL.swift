@@ -9,33 +9,7 @@
 import Foundation
 import Security
 
-/// Error codes used by the 42 API
-enum RequestError: Int, Error {
-
-	/// The request is malformed
-	case badRequest = 400
-
-	/// Unauthorized
-	case unauthorized = 401
-
-	/// Forbidden
-	case forbidden = 403
-
-	/// Page or resource is not found
-	case notFound = 404
-
-	/// Unprocessable entity
-	case unprocessable = 422
-
-	/// We have a problem with our server.
-	/// Please try again later.
-	case serverError = 500
-
-}
-
-
 public struct Enpoint: CodingAPI {
-
 
 	enum Endpoints: String {
 		case me = "me"
