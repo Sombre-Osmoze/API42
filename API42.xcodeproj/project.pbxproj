@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		ED56355821F17524009457AF /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355721F17524009457AF /* Titles.swift */; };
 		ED56355A21F175C1009457AF /* TitlesUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355921F175C1009457AF /* TitlesUsers.swift */; };
 		ED56355D21F17664009457AF /* LanguagesUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56355C21F17664009457AF /* LanguagesUsers.swift */; };
+		ED6C9BDA229BF1A30049B8CB /* ProjectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6C9BD9229BF1A30049B8CB /* ProjectsTests.swift */; };
+		ED6C9BDC229BF2340049B8CB /* Project.json in Resources */ = {isa = PBXBuildFile; fileRef = ED6C9BDB229BF2340049B8CB /* Project.json */; };
 		ED959BEE21DF845D00B61435 /* API42.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED959BE421DF845D00B61435 /* API42.framework */; };
 		ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED959BF221DF845D00B61435 /* API42Tests.swift */; };
 		ED959BF521DF845D00B61435 /* API42.h in Headers */ = {isa = PBXBuildFile; fileRef = ED959BE721DF845D00B61435 /* API42.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +63,8 @@
 		ED56355721F17524009457AF /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		ED56355921F175C1009457AF /* TitlesUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlesUsers.swift; sourceTree = "<group>"; };
 		ED56355C21F17664009457AF /* LanguagesUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesUsers.swift; sourceTree = "<group>"; };
+		ED6C9BD9229BF1A30049B8CB /* ProjectsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTests.swift; sourceTree = "<group>"; };
+		ED6C9BDB229BF2340049B8CB /* Project.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Project.json; sourceTree = "<group>"; };
 		ED959BE421DF845D00B61435 /* API42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = API42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED959BE721DF845D00B61435 /* API42.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API42.h; sourceTree = "<group>"; };
 		ED959BE821DF845D00B61435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,8 +151,8 @@
 		ED56354E21F15C5A009457AF /* Projects */ = {
 			isa = PBXGroup;
 			children = (
-				ED56354F21F15C9A009457AF /* ProjectsUsers.swift */,
 				ED56355121F15E1A009457AF /* Project.swift */,
+				ED56354F21F15C9A009457AF /* ProjectsUsers.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -210,6 +214,8 @@
 				ED959BF421DF845D00B61435 /* Info.plist */,
 				ED959BF221DF845D00B61435 /* API42Tests.swift */,
 				EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */,
+				ED6C9BD9229BF1A30049B8CB /* ProjectsTests.swift */,
+				ED6C9BDB229BF2340049B8CB /* Project.json */,
 				ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */,
 			);
 			path = API42Tests;
@@ -305,14 +311,17 @@
 					ED959BE321DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
 					};
 					ED959BEC21DF845D00B61435 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = ED959BDE21DF845D00B61435 /* Build configuration list for PBXProject "API42" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -342,6 +351,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6C9BDC229BF2340049B8CB /* Project.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +392,7 @@
 				ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */,
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
 				EDD36B0F21EC04F000195C01 /* AuthenticationTests.swift in Sources */,
+				ED6C9BDA229BF1A30049B8CB /* ProjectsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,8 +527,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e armv7 armv7s armv7k arm64_32";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -541,11 +551,7 @@
 				INFOPLIST_FILE = API42/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -571,11 +577,7 @@
 				INFOPLIST_FILE = API42/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -593,14 +595,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z8Q82L44LS;
 				INFOPLIST_FILE = API42Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -613,14 +611,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z8Q82L44LS;
 				INFOPLIST_FILE = API42Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "black.sombre-osmoze.API42Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
