@@ -22,7 +22,6 @@ public struct CursusUsers: CodingAPI {
 
 	public let skills : [Skill]
 
-	// TODO: Trying 'cursusId' in replacement of 'cursusid'
 	public let cursusId : ID
 
 	public let hasCoalition : Bool
