@@ -9,6 +9,7 @@
 import Foundation
 import Security
 
+/// A 42 Api token
 public class Token: CodingAPI {
 
 	let token : String
@@ -125,5 +126,5 @@ public class Token: CodingAPI {
 
 		return true
 	}
-
 }
+
