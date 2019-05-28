@@ -38,3 +38,7 @@ enum RequestError: Int, Error {
 	case serverError = 500
 
 }
+
+public enum CachedData: Error {
+	case noUser
+}
