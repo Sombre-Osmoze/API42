@@ -12,7 +12,7 @@ import Foundation
 import os.log
 import os.signpost
 
-public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTaskDelegate {
+open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 	/// The controller 42's API token
 	private var token : Token!
@@ -25,6 +25,12 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 
 	/// Logger for sign post logs
 	private var logging : OSLog! { return .init(subsystem: "com.osmoze.API42", category: "ControllerAPI") }
+
+	private var encoder : JSONEncoder {
+		let enc = JSONEncoder()
+		enc.keyEncodingStrategy = .convertToSnakeCase
+		return enc
+	}
 
 	private var decoder : JSONDecoder {
 		let dec = JSONDecoder()
@@ -53,7 +59,8 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		super.init()
 	}
 
-	public func logout() {
+	open func logout() {
+		pendingTask.removeAll()
 		session.invalidateAndCancel()
 		try? Token.delete()
 	}
@@ -64,26 +71,78 @@ public class ControllerAPI: NSObject, Codable, URLSessionDelegate, URLSessionTas
 		return request
 	}
 
+	private var refreshTask : URLSessionDataTask? = nil
+	private var pendingTask : [URLSessionTask] = []
+
 	private func validate(_ task: URLSessionTask) -> Void {
 
 		/// The token expiration date
 		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
 
 		// Check token validity.
-		// Can use `creation.timeIntervalSinceNow.magnitude < expiration`
-		guard tokenLimit.timeIntervalSinceNow.sign == .plus else {
-			os_log(.debug, log: logger, "Token has expired")
+		// Can use `creation.timeIntervalSinceNow.magnitude >= expiration`
+		guard tokenLimit.timeIntervalSinceNow.sign == .minus else {
 
-			// TODO: Refresh token
-//			session.dataTask(with: <#T##URLRequest#>)
-
+			// Execute the task
+			task.resume()
 			return
 		}
 
+		os_log(.debug, log: logger, "Token has expired")
 
-		// Execute the task
-		task.resume()
+		// Add the taks to the pending list
+		pendingTask.append(task)
+
+		guard token.refresh != nil else {
+			logout()
+			os_log(.info, log: logger, "Logout")
+			return
+		}
+
+		refreshToken()
 	}
+
+
+
+	private func refreshToken() -> Void {
+
+		guard refreshTask == nil, let refresh = token.refresh else { return }
+
+		let auth = AuthenticationHandler { _,_ in }
+		let refreshToken = auth.refresh(refresh: refresh)
+
+		var request = prepare(request: endpoints.endpoint(url: .token))
+
+		request.httpMethod = "POST"
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.httpBody = try? encoder.encode(refreshToken)
+
+		os_signpost(.begin, log: logging, name: "Refreshing token")
+		refreshTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
+
+			do {
+				try self.verify(request: response, error: error)
+				self.token = try self.decoder.decode(Token.self, from: data!)
+
+				os_log(.info, log: self.logger, "Token refreshed on %s", self.token.creation.debugDescription)
+				self.pendingTask.removeAll(where: { (task) -> Bool in
+					task.resume()
+					return true
+				})
+
+				try self.token.store()
+				os_log(.debug, log: self.logger, "Token stored")
+			} catch let err {
+				print(err)
+				self.logout()
+			}
+			os_signpost(.end, log: self.logging, name: "Refreshing token")
+		})
+
+		refreshTask!.priority = URLSessionTask.highPriority
+		refreshTask!.resume()
+	}
+
 
 	// MARK: Request & Error handling
 
