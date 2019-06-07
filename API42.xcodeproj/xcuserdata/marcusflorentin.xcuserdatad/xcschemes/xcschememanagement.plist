@@ -9,9 +9,29 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>API42PackageDescription.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>API42PackageTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>API42::API42</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>API42::API42Tests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ED959BE321DF845D00B61435</key>
 		<dict>
 			<key>primary</key>
