@@ -217,7 +217,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		validate(task)
 	}
 
-	func userInformation(id: ID,  handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
+	public func userInformation(id: ID,  handler: @escaping(_ user: UserInformation?, _ error: Error?) -> Void) -> Void {
 		var url = endpoints.endpoint(url: .users)
 		url.appendPathComponent(id.description)
 

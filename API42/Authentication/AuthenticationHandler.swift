@@ -80,7 +80,8 @@ open class AuthenticationHandler: NSObject {
 						self.controller = ControllerAPI(token: token)
 						self.step = .session
 						self.controller?.ownerInformation { (owner, error) in
-							if error == nil, owner != nil {
+							if error == nil, let owner = owner {
+
 								self.owner = owner
 								self.step = .owner
 								self.step = .terminated
