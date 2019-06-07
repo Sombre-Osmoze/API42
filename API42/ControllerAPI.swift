@@ -121,7 +121,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		refreshTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
 
 			do {
-				try self.verify(request: response, error: error)
+				try self.verify(request: response, data: data, error: error)
 				self.token = try self.decoder.decode(Token.self, from: data!)
 
 				os_log(.info, log: self.logger, "Token refreshed on %s", self.token.creation.debugDescription)
@@ -144,16 +144,16 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 	}
 
 
-	// MARK: Request & Error handling
+	// MARK: - Request & Error handling
 
-	private func verify(request response: URLResponse?, data: Data? = nil, error: Error?) throws -> Void {
+	@discardableResult private func  verify(request response: URLResponse?, data: Data? = nil, error: Error?) throws -> Data? {
 
 		guard error == nil else {
 			try handle(error!)
 			throw error!
 		}
 
-		guard let reponse = response as? HTTPURLResponse else { return }
+		guard let reponse = response as? HTTPURLResponse else { throw RequestFault.corruptedData }
 
 
 		if reponse.statusCode != 200, let error = RequestError(rawValue: reponse.statusCode) {
@@ -165,31 +165,39 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 			throw RequestFault.corruptedData
 		}
 
+		return data
 	}
 
 	private func handle(_ error: Error) throws -> Void {
 
 		switch error {
-		case (let request as RequestError): break
-			// TODO: Handle http classique error
+		case (let request as RequestError):
+			switch request {
+			case .forbidden: os_log(.error, log: logger, "The resources are forbidden")
+			case .badRequest: os_log(.error, log: logger, "I bad request was made")
+			case .notFound: os_log(.error, log: logger, "The request was not found")
+			case .serverError: os_log(.error, log: logger, "The server encounter a error")
+			case .unauthorized: os_log(.error, log: logger, "The user is unauthorized")
+			case .unprocessable: os_log(.error, log: logger, "The request was unprocesable")
+			}
 
 		default:
 			os_log(.fault, log: logger, "Unhandled error: %s", error.localizedDescription)
 		}
 	}
 
-	// MARK: User
+	// MARK: - User
 
 	public func ownerInformation( handler: @escaping(_ owner: UserInformation?, _ error: Error?) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Owner information fetching")
 		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me))) { (data, response, error) in
 			do {
-				try self.verify(request: response, error: error)
+				try self.verify(request: response, data: data, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
-			} catch (let error) {
-				os_signpost(.event, log: self.logging, name: "Owner Information Fetching", "A decoding error occur: %s", error.localizedDescription)
-				handler(nil, error)
+			} catch (let err) {
+				os_signpost(.event, log: self.logging, name: "Owner Information Fetching", "A error occured: %s", err.localizedDescription)
+				handler(nil, err)
 			}
 			os_signpost(.end, log: self.logging, name: "Owner Information Fetching")
 		}
@@ -217,7 +225,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		let task = session.dataTask(with: prepare(request: url)) { (data, response, error) in
 
 			do {
-				try self.verify(request: response, error: error)
+				try self.verify(request: response, data: data, error: error)
 				handler(try self.decoder.decode(UserInformation.self, from: data!), nil)
 			} catch (let error) {
 				handler(nil, error)
@@ -239,7 +247,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 
 
-	// MARK: Search API
+	// MARK: - Search API
 
 	public func search(user login: Login, page: Int,   handler: @escaping(_ users: [User]?, _ error: Error? ) -> Void) -> Void {
 
@@ -267,13 +275,14 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 	// MARK: - Slots
 
-	func ownerSlots(handler: @escaping(_ result: Result<[Slot], Error>) -> Void) -> Void {
+	public func ownerSlots(handler: @escaping(_ result: Result<[Slot], Error>) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Owner slots fetching")
 		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me, component: .slots))) { (data, response, error) in
 
 			do {
-				try self.verify(request: response, error: error)
+				try self.verify(request: response, data: data, error: error)
+				handler(.success(try self.decoder.decode([Slot].self, from: data!)))
 			} catch let err {
 				handler(.failure(err))
 			}
@@ -285,5 +294,24 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 	}
 
 
-	
+	// MARK: - Projects
+
+	public func projects(handler: @escaping(_ result: Result<[Project], Error>) -> Void) -> Void {
+
+		os_signpost(.begin, log: logging, name: "Projects fetching")
+		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me, component: .slots))) { (data, response, error) in
+
+			do {
+				try self.verify(request: response, data: data, error: error)
+				handler(.success(try self.decoder.decode([Project].self, from: data!)))
+			} catch let err {
+				handler(.failure(err))
+			}
+
+			os_signpost(.end, log: self.logging, name: "Projects fetching")
+		}
+
+		validate(task)
+	}
+
 }

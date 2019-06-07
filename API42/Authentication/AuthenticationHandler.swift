@@ -63,7 +63,7 @@ open class AuthenticationHandler: NSObject {
 	public func obtainToken(auth code: String) -> Void {
 		let url = URL(string: "https://api.intra.42.fr/oauth/token")!
 
-		let data = "grant_type=client_credentials&client_id=\(uid)&client_secret=\(secret)&code=\(code)&redirect_uri=\(redirect)".data(using: .utf8)!
+		let data = "grant_type=authorization_code&client_id=\(uid)&client_secret=\(secret)&code=\(code)&redirect_uri=\(redirect)".data(using: .utf8)!
 		var request = URLRequest(url: url)
 
 		request.httpMethod = "POST"
@@ -80,9 +80,16 @@ open class AuthenticationHandler: NSObject {
 						self.controller = ControllerAPI(token: token)
 						self.step = .session
 						self.controller?.ownerInformation { (owner, error) in
-							self.owner = owner
-							self.step = .owner
-							// TODO: Handle error
+							if error == nil, owner != nil {
+								self.owner = owner
+								self.step = .owner
+								self.step = .terminated
+							} else {
+								// TODO: Handle error
+								self.controller?.logout()
+								self.controller = nil
+								self.step = .none
+							}
 						}
 						try token.store()
 						#if DEBUG

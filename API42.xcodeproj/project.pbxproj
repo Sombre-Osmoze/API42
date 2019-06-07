@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED008574229F4B430049ACAE /* ProjectSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED008573229F4B430049ACAE /* ProjectSessions.swift */; };
+		ED008577229F53CD0049ACAE /* Scales.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED008576229F53CD0049ACAE /* Scales.swift */; };
 		ED3EB26C21F02FC2002B9F4D /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB26B21F02FC2002B9F4D /* AuthenticationHandler.swift */; };
 		ED3EB27521F0E125002B9F4D /* Cursus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27421F0E125002B9F4D /* Cursus.swift */; };
 		ED3EB27721F0E2BA002B9F4D /* CursusUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27621F0E2BA002B9F4D /* CursusUsers.swift */; };
@@ -14,6 +16,10 @@
 		ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27B21F0E3ED002B9F4D /* Tools.swift */; };
 		ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB27D21F0E4B7002B9F4D /* User.swift */; };
 		ED3EB28121F0E62F002B9F4D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3EB28021F0E62F002B9F4D /* Group.swift */; };
+		ED550F9722A7222D00E98923 /* UserInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED550F9622A7222D00E98923 /* UserInformationTests.swift */; };
+		ED550F9922A7228600E98923 /* Me.json in Resources */ = {isa = PBXBuildFile; fileRef = ED550F9822A7228600E98923 /* Me.json */; };
+		ED550F9C22A729DB00E98923 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED550F9B22A729DB00E98923 /* Campus.swift */; };
+		ED550F9E22A72A7B00E98923 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED550F9D22A72A7B00E98923 /* Language.swift */; };
 		ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */; };
 		ED5513F92295F9F9005FC6D1 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5513F82295F9F9005FC6D1 /* Slot.swift */; };
 		ED56355021F15C9A009457AF /* ProjectsUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56354F21F15C9A009457AF /* ProjectsUsers.swift */; };
@@ -47,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED008573229F4B430049ACAE /* ProjectSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSessions.swift; sourceTree = "<group>"; };
+		ED008576229F53CD0049ACAE /* Scales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scales.swift; sourceTree = "<group>"; };
 		ED3EB26B21F02FC2002B9F4D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		ED3EB27221F0DFF6002B9F4D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ED3EB27421F0E125002B9F4D /* Cursus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cursus.swift; sourceTree = "<group>"; };
@@ -55,6 +63,10 @@
 		ED3EB27B21F0E3ED002B9F4D /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		ED3EB27D21F0E4B7002B9F4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED3EB28021F0E62F002B9F4D /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		ED550F9622A7222D00E98923 /* UserInformationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationTests.swift; sourceTree = "<group>"; };
+		ED550F9822A7228600E98923 /* Me.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Me.json; sourceTree = "<group>"; };
+		ED550F9B22A729DB00E98923 /* Campus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
+		ED550F9D22A72A7B00E98923 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsTests.swift; sourceTree = "<group>"; };
 		ED5513F82295F9F9005FC6D1 /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		ED56354F21F15C9A009457AF /* ProjectsUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsUsers.swift; sourceTree = "<group>"; };
@@ -99,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED008575229F501B0049ACAE /* Scales */ = {
+			isa = PBXGroup;
+			children = (
+				ED008576229F53CD0049ACAE /* Scales.swift */,
+			);
+			path = Scales;
+			sourceTree = "<group>";
+		};
 		ED3EB27321F0E0F0002B9F4D /* Cursus */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +144,41 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
+		ED550F8F22A71EB300E98923 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				ED6C9BD9229BF1A30049B8CB /* ProjectsTests.swift */,
+				ED6C9BDB229BF2340049B8CB /* Project.json */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		ED550F9522A7222D00E98923 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				ED550F9622A7222D00E98923 /* UserInformationTests.swift */,
+				ED550F9822A7228600E98923 /* Me.json */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		ED550F9A22A729BD00E98923 /* Campus */ = {
+			isa = PBXGroup;
+			children = (
+				ED550F9B22A729DB00E98923 /* Campus.swift */,
+			);
+			path = Campus;
+			sourceTree = "<group>";
+		};
+		ED550F9F22A72AF700E98923 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				ED550F9D22A72A7B00E98923 /* Language.swift */,
+				ED56355C21F17664009457AF /* LanguagesUsers.swift */,
+			);
+			path = Languages;
+			sourceTree = "<group>";
+		};
 		ED5513F72295F972005FC6D1 /* Slots */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,9 +191,12 @@
 			isa = PBXGroup;
 			children = (
 				ED56355421F17434009457AF /* Achievements */,
+				ED550F9A22A729BD00E98923 /* Campus */,
 				ED3EB27321F0E0F0002B9F4D /* Cursus */,
 				ED3EB27F21F0E61F002B9F4D /* Groups */,
+				ED550F9F22A72AF700E98923 /* Languages */,
 				ED56354E21F15C5A009457AF /* Projects */,
+				ED008575229F501B0049ACAE /* Scales */,
 				EDE0D59B21F62E9500B9170B /* Searches */,
 				ED3EB27821F0E384002B9F4D /* Skills */,
 				ED5513F72295F972005FC6D1 /* Slots */,
@@ -152,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				ED56355121F15E1A009457AF /* Project.swift */,
+				ED008573229F4B430049ACAE /* ProjectSessions.swift */,
 				ED56354F21F15C9A009457AF /* ProjectsUsers.swift */,
 			);
 			path = Projects;
@@ -214,8 +273,8 @@
 				ED959BF421DF845D00B61435 /* Info.plist */,
 				ED959BF221DF845D00B61435 /* API42Tests.swift */,
 				EDD36B0E21EC04F000195C01 /* AuthenticationTests.swift */,
-				ED6C9BD9229BF1A30049B8CB /* ProjectsTests.swift */,
-				ED6C9BDB229BF2340049B8CB /* Project.json */,
+				ED550F9522A7222D00E98923 /* Users */,
+				ED550F8F22A71EB300E98923 /* Projects */,
 				ED5513F52295F8F9005FC6D1 /* SlotsTests.swift */,
 			);
 			path = API42Tests;
@@ -235,7 +294,6 @@
 			children = (
 				ED959CBD21E449A900B61435 /* UserInformation.swift */,
 				ED3EB27D21F0E4B7002B9F4D /* User.swift */,
-				ED56355C21F17664009457AF /* LanguagesUsers.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -352,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED6C9BDC229BF2340049B8CB /* Project.json in Resources */,
+				ED550F9922A7228600E98923 /* Me.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +430,7 @@
 				ED959C0F21E1870F00B61435 /* Token.swift in Sources */,
 				ED5513F92295F9F9005FC6D1 /* Slot.swift in Sources */,
 				ED959CBE21E449A900B61435 /* UserInformation.swift in Sources */,
+				ED550F9C22A729DB00E98923 /* Campus.swift in Sources */,
 				EDE0D59D21F62EB000B9170B /* SearchAPI.swift in Sources */,
 				ED56355221F15E1A009457AF /* Project.swift in Sources */,
 				ED959C0721E0E01500B61435 /* ControllerAPI.swift in Sources */,
@@ -380,7 +440,10 @@
 				ED3EB27C21F0E3ED002B9F4D /* Tools.swift in Sources */,
 				EDC85FFE229BE14800A19DF7 /* Errors.swift in Sources */,
 				ED959BFF21DF8A9500B61435 /* EndpointURL.swift in Sources */,
+				ED008577229F53CD0049ACAE /* Scales.swift in Sources */,
 				ED3EB27E21F0E4B7002B9F4D /* User.swift in Sources */,
+				ED550F9E22A72A7B00E98923 /* Language.swift in Sources */,
+				ED008574229F4B430049ACAE /* ProjectSessions.swift in Sources */,
 				ED3EB26C21F02FC2002B9F4D /* AuthenticationHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +454,7 @@
 			files = (
 				ED5513F62295F8F9005FC6D1 /* SlotsTests.swift in Sources */,
 				ED959BF321DF845D00B61435 /* API42Tests.swift in Sources */,
+				ED550F9722A7222D00E98923 /* UserInformationTests.swift in Sources */,
 				EDD36B0F21EC04F000195C01 /* AuthenticationTests.swift in Sources */,
 				ED6C9BDA229BF1A30049B8CB /* ProjectsTests.swift in Sources */,
 			);
