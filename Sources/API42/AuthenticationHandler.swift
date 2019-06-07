@@ -9,6 +9,7 @@
 import Foundation
 import os.log
 
+@available(iOS 12.0, *, macOS 10.14, *)
 open class AuthenticationHandler: NSObject {
 
 	public enum AuthStep: String {

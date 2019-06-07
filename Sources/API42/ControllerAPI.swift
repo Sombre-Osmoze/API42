@@ -12,6 +12,7 @@ import Foundation
 import os.log
 import os.signpost
 
+@available(iOS 12.0, *, macOS 10.14, *)
 open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 	/// The controller 42's API token
