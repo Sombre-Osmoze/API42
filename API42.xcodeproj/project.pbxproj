@@ -21,6 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		ED3425B022B112BF001DF57E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3425AF22B112BF001DF57E /* Tag.swift */; };
+		ED3425B422B13F8D001DF57E /* ProjectInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3425B322B13F8D001DF57E /* ProjectInfo.swift */; };
+		ED3425B822B1446A001DF57E /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3425B722B1446A001DF57E /* Attachment.swift */; };
+		ED3425BA22B15211001DF57E /* FileAttachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3425B922B15211001DF57E /* FileAttachments.swift */; };
+		ED3425BE22B173B7001DF57E /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3425BD22B173B7001DF57E /* Controls.swift */; };
 		ED7E31D422AADB4E00BB5260 /* ControllerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E31D322AADB4E00BB5260 /* ControllerAPI.swift */; };
 		ED7E31D622AADB5000BB5260 /* EndpointURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E31D522AADB5000BB5260 /* EndpointURL.swift */; };
 		ED7E31D822AADB5400BB5260 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7E31D722AADB5400BB5260 /* Errors.swift */; };
@@ -71,8 +76,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"API42::API42::Product" /* API42.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = API42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"API42::API42::Product" /* API42.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = API42.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"API42::API42Tests::Product" /* API42Tests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = API42Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED3425AF22B112BF001DF57E /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		ED3425B322B13F8D001DF57E /* ProjectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfo.swift; sourceTree = "<group>"; };
+		ED3425B722B1446A001DF57E /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		ED3425B922B15211001DF57E /* FileAttachments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttachments.swift; sourceTree = "<group>"; };
+		ED3425BD22B173B7001DF57E /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
 		ED7E31B222AADB3C00BB5260 /* AuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		ED7E31B322AADB3C00BB5260 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ED7E31B622AADB4500BB5260 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
@@ -130,6 +140,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED3425AE22B112A7001DF57E /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				ED3425AF22B112BF001DF57E /* Tag.swift */,
+			);
+			name = Tags;
+			sourceTree = "<group>";
+		};
+		ED3425B622B1445E001DF57E /* Attachements */ = {
+			isa = PBXGroup;
+			children = (
+				ED3425B722B1446A001DF57E /* Attachment.swift */,
+				ED3425B922B15211001DF57E /* FileAttachments.swift */,
+			);
+			name = Attachements;
+			sourceTree = "<group>";
+		};
 		ED7E31DC22AADB7900BB5260 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +195,7 @@
 		ED7E31EB22AADE2B00BB5260 /* API Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED3425B622B1445E001DF57E /* Attachements */,
 				ED7E31EC22AADE4D00BB5260 /* Achievements */,
 				ED7E31ED22AADE6F00BB5260 /* Campus */,
 				ED7E31EF22AADE9900BB5260 /* Cursus */,
@@ -178,6 +206,7 @@
 				ED7E31E722AADC8800BB5260 /* Searches */,
 				ED7E31F322AADF3300BB5260 /* Skills */,
 				ED7E31F222AADF1F00BB5260 /* Slots */,
+				ED3425AE22B112A7001DF57E /* Tags */,
 				ED7E31F622AADFA300BB5260 /* Titles */,
 				ED7E31F422AADF4B00BB5260 /* Users */,
 			);
@@ -223,6 +252,7 @@
 				ED7E31BA22AADB4500BB5260 /* ProjectSessions.swift */,
 				ED7E31BB22AADB4500BB5260 /* Project.swift */,
 				ED7E31BC22AADB4500BB5260 /* ProjectsUsers.swift */,
+				ED3425B322B13F8D001DF57E /* ProjectInfo.swift */,
 			);
 			name = Projects;
 			sourceTree = "<group>";
@@ -310,7 +340,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_19 /* README.md */,
@@ -319,7 +349,6 @@
 				OBJ_10 /* Tests */,
 				OBJ_14 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -336,6 +365,7 @@
 				ED7E31DB22AADB6700BB5260 /* Info.plist */,
 				ED7E31D922AADB5800BB5260 /* Tools.swift */,
 				ED7E31D322AADB4E00BB5260 /* ControllerAPI.swift */,
+				ED3425BD22B173B7001DF57E /* Controls.swift */,
 				ED7E31D522AADB5000BB5260 /* EndpointURL.swift */,
 				ED7E31D722AADB5400BB5260 /* Errors.swift */,
 				ED7E31E922AADCCE00BB5260 /* Authentication */,
@@ -411,7 +441,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -436,8 +466,10 @@
 				ED7E320822AADFFE00BB5260 /* Slot.swift in Sources */,
 				ED7E31D822AADB5400BB5260 /* Errors.swift in Sources */,
 				ED7E31FD22AADFFE00BB5260 /* CursusUsers.swift in Sources */,
+				ED3425B022B112BF001DF57E /* Tag.swift in Sources */,
 				ED7E31FB22AADFFE00BB5260 /* Achievements.swift in Sources */,
 				ED7E320322AADFFE00BB5260 /* Language.swift in Sources */,
+				ED3425B822B1446A001DF57E /* Attachment.swift in Sources */,
 				ED7E320122AADFFE00BB5260 /* Project.swift in Sources */,
 				ED7E320622AADFFE00BB5260 /* SearchAPI.swift in Sources */,
 				ED7E320522AADFFE00BB5260 /* Scales.swift in Sources */,
@@ -447,12 +479,15 @@
 				ED7E31D422AADB4E00BB5260 /* ControllerAPI.swift in Sources */,
 				ED7E31FA22AADFE700BB5260 /* Token.swift in Sources */,
 				ED7E31DA22AADB5800BB5260 /* Tools.swift in Sources */,
+				ED3425BA22B15211001DF57E /* FileAttachments.swift in Sources */,
+				ED3425BE22B173B7001DF57E /* Controls.swift in Sources */,
 				ED7E31FE22AADFFE00BB5260 /* Cursus.swift in Sources */,
 				ED7E320922AADFFE00BB5260 /* TitlesUsers.swift in Sources */,
 				ED7E320722AADFFE00BB5260 /* Skill.swift in Sources */,
 				ED7E320022AADFFE00BB5260 /* ProjectSessions.swift in Sources */,
 				ED7E31F922AADFE700BB5260 /* AuthenticationHandler.swift in Sources */,
 				ED7E320B22AADFFE00BB5260 /* User.swift in Sources */,
+				ED3425B422B13F8D001DF57E /* ProjectInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +529,7 @@
 		OBJ_22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 13;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,6 +558,7 @@
 		OBJ_23 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 13;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
