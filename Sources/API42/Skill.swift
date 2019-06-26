@@ -12,5 +12,5 @@ public struct Skill: CodingAPI {
 
 	public let id : ID
 	public let name : String
-	public let level : Level
+	public let level : Level?
 }
