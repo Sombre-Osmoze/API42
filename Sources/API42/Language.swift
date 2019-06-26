@@ -16,7 +16,7 @@ public struct Language: CodingAPI {
 
 	public let identifier : String
 
-	public let createdAt : Date
+	public let createdAt : Date?
 
-	public let updatedAt : Date
+	public let updatedAt : Date?
 }
