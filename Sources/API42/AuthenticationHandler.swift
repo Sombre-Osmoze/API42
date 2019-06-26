@@ -78,14 +78,18 @@ open class AuthenticationHandler: NSObject {
 				case 200:
 					do {
 						let token = try JSONDecoder().decode(Token.self, from: data!)
+						self.step = .token
 						self.controller = ControllerAPI(token: token)
+						try token.store()
+						#if DEBUG
+						os_log(.info, log: log, "Token: %s", token.token)
+						#endif
 						self.step = .session
 						self.controller?.ownerInformation { (owner, error) in
 							if error == nil, let owner = owner {
 
 								self.owner = owner
 								self.step = .owner
-								self.step = .terminated
 							} else {
 								// TODO: Handle error
 								self.controller?.logout()
@@ -93,11 +97,6 @@ open class AuthenticationHandler: NSObject {
 								self.step = .none
 							}
 						}
-						try token.store()
-						#if DEBUG
-							os_log(.info, log: log, "Token: %s", token.token)
-						#endif
-						self.step = .token
 					} catch {
 						self.error = error
 						self.logging()
