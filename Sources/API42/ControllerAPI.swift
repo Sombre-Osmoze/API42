@@ -21,12 +21,9 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 	/// Structure to get enpoints urls
 	private let endpoints = Enpoint()
 
-	/// Default event logger
-	private var logger : OSLog! { return .init(subsystem: "com.osmoze.API42", category: .pointsOfInterest) }
+	public var delegate : ControllerAPIDelegate? = nil
 
-	/// Logger for sign post logs
-	private var logging : OSLog! { return .init(subsystem: "com.osmoze.API42", category: "ControllerAPI") }
-
+	// The default API data's encoder
 	private var encoder : JSONEncoder {
 		let enc = JSONEncoder()
 		enc.keyEncodingStrategy = .convertToSnakeCase
@@ -44,6 +41,19 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		dec.dateDecodingStrategy = .formatted(format)
 		return dec
 	}
+
+	// MARK: Controller
+
+
+
+	/// The controller 42's API token
+	private var token : Token!
+
+	/// Default event logger
+	private var logger : OSLog! { return .init(subsystem: "com.osmoze.API42", category: .pointsOfInterest) }
+
+	/// Logger for sign post logs
+	private var logging : OSLog! { return .init(subsystem: "com.osmoze.API42", category: "ControllerAPI") }
 
 	public override init() {
 
@@ -64,6 +74,8 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		pendingTask.removeAll()
 		session.invalidateAndCancel()
 		try? Token.delete()
+		os_log(.info, log: logger, "Logout")
+		delegate?.didLogout()
 	}
 
 	private func prepare(request url: URL) -> URLRequest {
