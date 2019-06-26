@@ -16,17 +16,16 @@ public struct Project: CodingAPI {
 	
 	public let slug : Slug
 	
-	public let parent : ID?
+	public let parent : ProjectInfo?
 
-	// TODO: Get type
+	// TODO: Get type (maybe project info)
 	public let children : [String]?
 
 	public let objectives : [String]?
 
 	public let tier : Int?
 
-	// TODO: Get type
-	public let attachments : [String]?
+	public let attachments : [Attachments]?
 
 	public let createdAt : Date?
 
@@ -36,7 +35,6 @@ public struct Project: CodingAPI {
 
 	public let cursus : [Cursus]?
 
-	// TODO: Create `Campus`
 	public let campus : [Campus]?
 
 	public let skills : [Skill]?
@@ -44,10 +42,8 @@ public struct Project: CodingAPI {
 	// TODO: Get type
 	public let videos : [String]?
 
-	// TODO: Get type
-	public let tags : [String]?
+	public let tags : [Tag]
 
-	// TODO: Get type
-	public let projectSessions : [String]?
+	public let projectSessions : [ProjectSessions]?
 
 }
