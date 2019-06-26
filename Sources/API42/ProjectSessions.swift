@@ -14,32 +14,27 @@ public struct ProjectSessions: CodingAPI {
 
 	public let solo : Bool
 
-	public let beginAt : Date
+	public let beginAt : Date?
 
-	public let endAt : Date
+	public let endAt : Date?
 
-	public let estimateTime : TimeInterval
+	public let estimateTime : TimeInterval?
 
-	// TODO: Get type
-	public let durationDays : String?
+	public let durationDays : Int?
 
-	// TODO: Get type
-	public let terminatingAfter : String?
+	public let terminatingAfter : TimeInterval?
 
 	public let projectId : ID
 
-	// TODO: Verify type
 	public let campusId : ID?
 
-	// TODO: Verify type
 	public let cursus_id : ID?
 
 	public let createdAt : Date
 
 	public let updatedAt : Date
 
-	// TODO: Get type
-	public let maxPeople : String?
+	public let maxPeople : Int?
 
 	public let isSubscriptable : Bool
 
