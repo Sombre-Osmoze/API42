@@ -22,7 +22,7 @@ public struct ProjectsUsers: CodingAPI {
 
 	public let currentTeamId : ID?
 
-	public let project : Project
+	public let project : ProjectInfo
 
 	public let cursusIds : [ID]
 
