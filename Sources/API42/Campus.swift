@@ -14,11 +14,12 @@ public struct Campus: CodingAPI {
 
 	public let name : String
 
-	public let timeZone : TimeZone
+	// TODO: Try to decode a TimeZone from a String
+	public let timeZone : String
 
 	public let language : Language
 
 	public let usersCount : Int
 
-	public let vogsphereID : ID
+	public let vogsphereID : ID?
 }
