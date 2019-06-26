@@ -15,8 +15,10 @@ import os.signpost
 @available(iOS 12.0, *, macOS 10.14, *)
 open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
-	/// The controller 42's API token
-	private var token : Token!
+	// MARK: API
+
+	// The default number of items per page
+	public static let perPage = 30
 
 	/// Structure to get enpoints urls
 	private let endpoints = Enpoint()
@@ -30,6 +32,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		return enc
 	}
 
+	/// The default API data's decoder
 	private var decoder : JSONDecoder {
 		let dec = JSONDecoder()
 		dec.keyDecodingStrategy = .convertFromSnakeCase
@@ -70,7 +73,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		super.init()
 	}
 
-	open func logout() {
+	public func logout() {
 		pendingTask.removeAll()
 		session.invalidateAndCancel()
 		try? Token.delete()
@@ -78,44 +81,45 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		delegate?.didLogout()
 	}
 
+	// MARK: - Request handling
+
 	private func prepare(request url: URL) -> URLRequest {
 		var request = URLRequest(url: url)
 		request.setValue("\(token.type.capitalized) \(token.token)", forHTTPHeaderField: "Authorization")
 		return request
 	}
 
-	private var refreshTask : URLSessionDataTask? = nil
-	private var pendingTask : [URLSessionTask] = []
-
 	private func validate(_ task: URLSessionTask) -> Void {
 
 		/// The token expiration date
-		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
+//		let tokenLimit = token.creation.addingTimeInterval(token.expiration)
 
 		// Check token validity.
-		// Can use `creation.timeIntervalSinceNow.magnitude >= expiration`
-		guard tokenLimit.timeIntervalSinceNow.sign == .minus else {
+		// Can use `tokenLimit.timeIntervalSinceNow.sign == .minus`
+		guard token.creation.timeIntervalSinceNow <= token.expiration  else {
 
 			// Execute the task
 			task.resume()
 			return
 		}
 
-		os_log(.debug, log: logger, "Token has expired")
+		os_log(.debug, log: logger, "Token has expired the %s", token.creation.addingTimeInterval(token.expiration).description)
 
 		// Add the taks to the pending list
 		pendingTask.append(task)
 
 		guard token.refresh != nil else {
 			logout()
-			os_log(.info, log: logger, "Logout")
 			return
 		}
 
 		refreshToken()
 	}
 
+	// MARK: - Token refreshing
 
+	private var refreshTask : URLSessionDataTask? = nil
+	private var pendingTask : [URLSessionTask] = []
 
 	private func refreshToken() -> Void {
 
@@ -154,6 +158,14 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 		refreshTask!.priority = URLSessionTask.highPriority
 		refreshTask!.resume()
+	}
+
+	// MARK: - URL Session Delegate
+
+	private var session : URLSession {
+		let queue = OperationQueue()
+		queue.qualityOfService = .userInitiated
+		return URLSession(configuration: .default, delegate: self, delegateQueue: queue)
 	}
 
 
@@ -250,14 +262,6 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 		validate(task)
 	}
 
-	// MARK: - URL Session Delegate
-
-	private var session : URLSession {
-		let queue = OperationQueue()
-		queue.qualityOfService = .userInitiated
-		return URLSession(configuration: .default, delegate: self, delegateQueue: queue)
-	}
-
 
 
 	// MARK: - Search API
@@ -291,7 +295,7 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 	public func ownerSlots(handler: @escaping(_ result: Result<[Slot], Error>) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Owner slots fetching")
-		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me, component: .slots))) { (data, response, error) in
+		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .slots))) { (data, response, error) in
 
 			do {
 				try self.verify(request: response, data: data, error: error)
@@ -309,10 +313,14 @@ open class ControllerAPI: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
 
 	// MARK: - Projects
 
-	public func projects(handler: @escaping(_ result: Result<[Project], Error>) -> Void) -> Void {
+	public func projects(_ page: Int = 1, item perPage: Int = ControllerAPI.perPage,
+						 handler: @escaping(_ result: Result<[Project], Error>) -> Void) -> Void {
 
 		os_signpost(.begin, log: logging, name: "Projects fetching")
-		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .me, component: .slots))) { (data, response, error) in
+		var components : Set<URLQueryItem> = []
+		components.insert(.init(name: "page[number]", value: page.description))
+		components.insert(.init(name: "page[size]", value: perPage.description))
+		let task = session.dataTask(with: prepare(request: endpoints.endpoint(url: .projects, items: components))) { (data, response, error) in
 
 			do {
 				try self.verify(request: response, data: data, error: error)
