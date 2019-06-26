@@ -21,10 +21,9 @@ public struct Enpoint: CodingAPI {
 		enum Users: String {
 			case users = "users"
 		}
+		case projects = "projects"
+		case slots = "slots"
 
-		enum Components: String {
-			case slots = "slots"
-		}
 	}
 
 	var scope : URLProtectionSpace {
@@ -43,14 +42,11 @@ public struct Enpoint: CodingAPI {
 		return url
 	}
 
-	func endpoint(url type: Endpoints, component: Endpoints.Components? = nil) -> URL {
 
-		var url = main.appendingPathComponent(type.rawValue)
-
-		if let component = component {
-			url.appendPathComponent(component.rawValue)
-		}
-		return url
+	func endpoint(url type: Endpoints, items: Set<URLQueryItem> = []) -> URL {
+		var components = URLComponents(url: main, resolvingAgainstBaseURL: true)!
+		components.queryItems?.append(contentsOf: items)
+		return components.url!.appendingPathComponent(type.rawValue)
 	}
 
 
